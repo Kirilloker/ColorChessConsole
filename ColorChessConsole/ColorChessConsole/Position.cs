@@ -17,6 +17,12 @@
             Y = (int)_Y;
         }
 
+        public Position(Position anotherPosition)
+        {
+            this.X = anotherPosition.X;
+            this.Y = anotherPosition.Y;
+        }
+
         public static bool operator !=(Position pos1, Position pos2)
         {
             return !(pos1 == pos2);

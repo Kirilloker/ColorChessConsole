@@ -20,6 +20,14 @@ public class Cell
         this.figureType = FigureType.Empty;
     }
 
+    public Cell(Cell anotherCell)
+    {
+        this.pos = new Position(anotherCell.pos);
+        this.numberPlayer = anotherCell.numberPlayer;
+        this.type = anotherCell.type;
+        this.figureType = anotherCell.figureType;
+    }
+
 
     public void Click()
     {
