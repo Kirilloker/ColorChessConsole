@@ -37,10 +37,11 @@ public class Cell
     {
     }
 
-    public bool Avaible(Dictionary<CellType, List<int>> popaxyi)
+    public bool Avaible(Dictionary<CellType, bool>[] require, int numberPlayerFigure)
     {
         // Может ли фигура наступить на такой тип клетки
-        return popaxyi[type].Contains(numberPlayer);
+        if (numberPlayer == numberPlayerFigure) return require[0][type];
+        else return require[1][type];
     }
 
 
