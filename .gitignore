@@ -1,2 +1,15 @@
 
 ColorChessConsole/.vs/ColorChessConsole/v17/.suo
+ColorChessConsole/.vs/ColorChessConsole/v17/.suo
+ColorChessConsole/ColorChessConsole/bin/Debug/net6.0/ColorChessConsole.dll
+ColorChessConsole/.vs/ColorChessConsole/v17/.suo
+*.exe
+ColorChessConsole/.vs/ColorChessConsole/v17/.suo
+*.dll
+*.pdb
+*.json
+*.props
+*.cache
+*.txt
+*.editorconfig
+*.dll

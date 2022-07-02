@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ColorChessConsole;
+﻿namespace ColorChessConsole;
 
 class GameController
 {
-    public void OnCellOnClick(int x, int y)
+    public void OnCellOnClick(Position pos)
     {
-        Console.WriteLine("Some logic... with cell" + x + y);
+        Console.WriteLine("Some logic... with cell" + pos.ToString());
     }
 }

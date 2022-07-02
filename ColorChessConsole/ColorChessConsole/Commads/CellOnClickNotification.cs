@@ -1,25 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ColorChessConsole;
+﻿namespace ColorChessConsole;
 class CellOnClickNotification : ICommand
 {
     private MediatorController reciver;
-    private int x;
-    private int y;
+    private Position pos;
 
-    public CellOnClickNotification(int _x, int _y)
+    public CellOnClickNotification(Position _pos)
     {
-        x = _x; 
-        y = _y;
+        pos = _pos;
         reciver = MediatorController.Instance();
     }
 
     public void Execute()
     {
-        reciver.OnCellClicked(x,y);
+        reciver.OnCellClicked(pos);
     }
 }

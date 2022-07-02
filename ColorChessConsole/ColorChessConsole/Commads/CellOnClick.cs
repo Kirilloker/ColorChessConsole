@@ -1,26 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ColorChessConsole;
+﻿namespace ColorChessConsole;
 class CellOnClick : ICommand
 {
     private GameController reciver;
-    private int x;
-    private int y;
+    private Position pos;
 
-    public CellOnClick(int _x, int _y, GameController _gameController)
+    public CellOnClick(Position _pos, GameController _gameController)
     {
-        x = _x;
-        y = _y;
+        pos = _pos;
         reciver = _gameController;
     }
 
     public void Execute()
     {
-        reciver.OnCellOnClick(x, y);
+        reciver.OnCellOnClick(pos);
     }
 }
 

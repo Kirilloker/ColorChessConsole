@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ColorChessConsole;
+﻿namespace ColorChessConsole;
 class MediatorController : ICommandInvoker
 {
     private CellController? cellController;
@@ -26,7 +20,7 @@ class MediatorController : ICommandInvoker
 
     private MediatorController()
     {
-        instance = this; ;
+        instance = this; 
     }
 
     public void setController(CellController _cellController)
@@ -49,9 +43,9 @@ class MediatorController : ICommandInvoker
         command = _command;
     }
 
-    public void OnCellClicked(int _x, int _y)
+    public void OnCellClicked(Position pos)
     {
-        SetCommand(new CellOnClick(_x, _y, gameController));
+        SetCommand(new CellOnClick(pos, gameController));
         SendCommand();
     }
 }

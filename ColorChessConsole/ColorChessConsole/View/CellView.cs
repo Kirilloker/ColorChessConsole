@@ -7,21 +7,19 @@ using System.Threading.Tasks;
 namespace ColorChessConsole;
 class CellView
 {
-    private int x;
-    private int y;
+    private Position pos;
 
     private CellController controller;
 
-    public CellView(int _x, int _y, CellController _controller)
+    public CellView(Position _pos, CellController _controller)
     {
-        x = _x;
-        y = _y;
+        pos = _pos;
         controller = _controller;
     }
 
     public void OnMouseClick()
     {
-        controller.SetCommand(new CellOnClickNotification(x, y));
+        controller.SetCommand(new CellOnClickNotification(pos));
         controller.SendCommand();
     }
 }
