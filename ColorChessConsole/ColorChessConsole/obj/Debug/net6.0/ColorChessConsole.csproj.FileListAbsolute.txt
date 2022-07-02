@@ -1,0 +1,15 @@
+C:\Git\ColorChessConsole\ColorChessConsole\ColorChessConsole\bin\Debug\net6.0\ColorChessConsole.exe
+C:\Git\ColorChessConsole\ColorChessConsole\ColorChessConsole\bin\Debug\net6.0\ColorChessConsole.deps.json
+C:\Git\ColorChessConsole\ColorChessConsole\ColorChessConsole\bin\Debug\net6.0\ColorChessConsole.runtimeconfig.json
+C:\Git\ColorChessConsole\ColorChessConsole\ColorChessConsole\bin\Debug\net6.0\ColorChessConsole.dll
+C:\Git\ColorChessConsole\ColorChessConsole\ColorChessConsole\bin\Debug\net6.0\ColorChessConsole.pdb
+C:\Git\ColorChessConsole\ColorChessConsole\ColorChessConsole\obj\Debug\net6.0\ColorChessConsole.csproj.AssemblyReference.cache
+C:\Git\ColorChessConsole\ColorChessConsole\ColorChessConsole\obj\Debug\net6.0\ColorChessConsole.GeneratedMSBuildEditorConfig.editorconfig
+C:\Git\ColorChessConsole\ColorChessConsole\ColorChessConsole\obj\Debug\net6.0\ColorChessConsole.AssemblyInfoInputs.cache
+C:\Git\ColorChessConsole\ColorChessConsole\ColorChessConsole\obj\Debug\net6.0\ColorChessConsole.AssemblyInfo.cs
+C:\Git\ColorChessConsole\ColorChessConsole\ColorChessConsole\obj\Debug\net6.0\ColorChessConsole.csproj.CoreCompileInputs.cache
+C:\Git\ColorChessConsole\ColorChessConsole\ColorChessConsole\obj\Debug\net6.0\ColorChessConsole.dll
+C:\Git\ColorChessConsole\ColorChessConsole\ColorChessConsole\obj\Debug\net6.0\refint\ColorChessConsole.dll
+C:\Git\ColorChessConsole\ColorChessConsole\ColorChessConsole\obj\Debug\net6.0\ColorChessConsole.pdb
+C:\Git\ColorChessConsole\ColorChessConsole\ColorChessConsole\obj\Debug\net6.0\ColorChessConsole.genruntimeconfig.cache
+C:\Git\ColorChessConsole\ColorChessConsole\ColorChessConsole\obj\Debug\net6.0\ref\ColorChessConsole.dll
