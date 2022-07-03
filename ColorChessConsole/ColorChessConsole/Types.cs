@@ -117,7 +117,7 @@
         Bishop,
         Castle,
         Horse,
-        Queen
+        Queen,
     }
 
     public enum Corner
