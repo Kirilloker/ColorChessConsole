@@ -14,3 +14,13 @@ cellController.setCell(cell);
 
 cell.OnMouseClick();
 
+
+
+int[,] nums2 = { { 1, 2, 3}, { 4, 5, 6 } };
+
+
+foreach (var item in nums2)
+{
+    Console.WriteLine(item);
+}
+

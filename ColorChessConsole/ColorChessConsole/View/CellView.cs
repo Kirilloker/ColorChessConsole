@@ -1,25 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace ColorChessConsole;
 
-namespace ColorChessConsole;
 class CellView
 {
-    private Position pos;
+    Cell cellModel;
 
-    private CellController controller;
-
-    public CellView(Position _pos, CellController _controller)
+    public CellView(Cell _cellModel)
     {
-        pos = _pos;
-        controller = _controller;
+        cellModel = _cellModel;
     }
 
     public void OnMouseClick()
     {
-        controller.SetCommand(new CellOnClickNotification(pos));
-        controller.SendCommand();
+        cellModel.Click();
+    }
+    
+    //public void ChangeView()
+    //{
+
+    //}
+
+    public void StatePrompt(bool state)
+    {
+        //Prompt.Mesh(state);
     }
 }

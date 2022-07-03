@@ -60,17 +60,17 @@
             }
         }
 
-        public static string ToString(Corner corner)
+        public static string ToString(CornerType corner)
         {
             switch (corner)
             {
-                case Corner.DownLeft:
+                case CornerType.DownLeft:
                     return "DownLeft";
-                case Corner.DownRight:
+                case CornerType.DownRight:
                     return "DownRight";
-                case Corner.UpRight:
+                case CornerType.UpRight:
                     return "UpRight";
-                case Corner.UpLeft:
+                case CornerType.UpLeft:
                     return "UpLeft";
                 default:
                     DebugConsole.Print("Unknown type Corner");
@@ -120,7 +120,7 @@
         Queen
     }
 
-    public enum Corner
+    public enum CornerType
     {
         Empty,
         UpLeft,

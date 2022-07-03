@@ -3,6 +3,27 @@ class MediatorController : ICommandInvoker
 {
     private CellController? cellController;
     private GameController? gameController;
+
+
+    public void setController(CellController _cellController)
+    {
+        cellController = _cellController;
+
+    }
+    public void setController(GameController _gameController)
+    {
+        gameController = _gameController;
+    }
+
+
+
+    public void OnCellClicked(Position pos)
+    {
+        SetCommand(new CellOnClick(pos, gameController));
+        SendCommand();
+    }
+
+
     private ICommand? command;
     static private MediatorController? instance;
 
@@ -20,18 +41,9 @@ class MediatorController : ICommandInvoker
 
     private MediatorController()
     {
-        instance = this; 
+        instance = this;
     }
 
-    public void setController(CellController _cellController)
-    {
-        cellController = _cellController;
-
-    }
-    public void setController(GameController _gameController)
-    {
-        gameController = _gameController;
-    }
 
     public void SendCommand()
     {
@@ -43,10 +55,5 @@ class MediatorController : ICommandInvoker
         command = _command;
     }
 
-    public void OnCellClicked(Position pos)
-    {
-        SetCommand(new CellOnClick(pos, gameController));
-        SendCommand();
-    }
 }
 

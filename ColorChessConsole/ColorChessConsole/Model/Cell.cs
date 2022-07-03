@@ -2,13 +2,13 @@
 
 public class Cell
 {
-    //CellView cellView;
+    private CellView cellView;
+    private CellController controller;
 
-    Position pos;
-
-    private int numberPlayer;
-    private CellType type;
-    private FigureType figureType;
+    public Position pos;
+    public int numberPlayer;
+    public CellType type;
+    public FigureType figureType;
 
     private Cell() { }
 
@@ -16,8 +16,10 @@ public class Cell
     {
         this.pos = pos;
         this.numberPlayer = -1;
-        this.Type = CellType.Empty;
+        this.type = CellType.Empty;
         this.figureType = FigureType.Empty;
+
+        controller = CellController.Instance();
     }
 
     public Cell(Cell anotherCell)
@@ -26,24 +28,25 @@ public class Cell
         this.numberPlayer = anotherCell.numberPlayer;
         this.type = anotherCell.type;
         this.figureType = anotherCell.figureType;
+        this.controller = CellController.Instance();
     }
 
 
     public void Click()
     {
+        controller.SetCommand(new CellOnClickNotification(pos));
+        controller.SendCommand();
     }
 
-    public void ShowPrompt()
+    public void StatePrompt(bool statePrompt)
     {
+        cellView.StatePrompt(statePrompt);
     }
 
-    public void HidePrompt()
-    {
-    }
 
-    public void ChangeColor()
-    {
-    }
+    //public void ChangeColor()
+    //{
+    //}
 
     public bool Avaible(Dictionary<CellType, bool>[] require, int numberPlayerFigure)
     {
@@ -54,34 +57,6 @@ public class Cell
 
 
 
-    // Свойства
-    public int NumberPlayer
-    {
-        get{ return numberPlayer; }
-        set
-        {
-            numberPlayer = value;	
-            //cellView.Update();
-        }
-    }
-
-    public CellType Type
-    {
-        get { return type; }
-        set
-        {
-            type = value;
-            //cellView.Update();
-        }
-    }
-    public FigureType FigureType
-    {
-        get { return figureType; }
-        set
-        {
-            figureType = value;
-        }
-    }
 
     // Для Логов
     public override string ToString()

@@ -1,7 +1,32 @@
 ﻿namespace ColorChessConsole;
 class CameraController : ICommandInvoker
 {
+
+
+    #region CopyMoments
+
     private ICommand? command;
+    static private CameraController? instance;
+    private readonly MediatorController mediator;
+
+    public static CameraController Instance()
+    {
+        if (instance == null)
+        {
+            instance = new CameraController();
+            return instance;
+        }
+        else
+            return instance;
+    }
+
+
+    private CameraController()
+    {
+        instance = this;
+        mediator = MediatorController.Instance();
+    }
+
 
     public void SendCommand()
     {
@@ -12,4 +37,6 @@ class CameraController : ICommandInvoker
     {
         command = _command;
     }
+
+    #endregion
 }
