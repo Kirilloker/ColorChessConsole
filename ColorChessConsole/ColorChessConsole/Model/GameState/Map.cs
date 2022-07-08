@@ -37,4 +37,28 @@ public class Map
             players.Add(new Player(anotherMap.players[i]));
         }
     }
+
+    public override string ToString()
+    {
+        string Logs = "";
+
+        Logs += "Cells:\n";
+
+        for (int i = 0; i < cells.GetLength(0); i++)
+        {
+            for (int j = 0; j < cells.GetLength(1); j++)
+            {
+                Logs += cells[i, j].ToString() + "\n";
+            }
+        }
+
+        Logs += "Players:\n";
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            Logs += players[i].ToString() + "\n";
+        }
+
+        return Logs;
+    }
 }

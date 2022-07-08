@@ -43,3 +43,13 @@ public enum PlayerType
     AI,
     Online
 }
+
+public enum ColorType
+{
+    Red,
+    Blue,
+    Yellow,
+    Green,
+    Purple
+}
+

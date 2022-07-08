@@ -64,11 +64,11 @@ public class Cell
 
         Logs += "Position: " + pos.ToString() + "\n";
 
-        Logs += "Type: " + type.ToString() + "\n";
+        Logs += "Type: " + Types.ToString(type) + "\n";
 
-        Logs += "Number Player: " + numberPlayer + "\n";
+        Logs += "Number Player: " + numberPlayer.ToString() + "\n";
 
-        Logs += "Figure: " + figureType.ToString() + "\n";
+        Logs += "Figure: " + Types.ToString(figureType) + "\n";
 
         return Logs;
     }

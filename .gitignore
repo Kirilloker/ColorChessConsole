@@ -20,3 +20,11 @@ ColorChessConsole/.vs/ColorChessConsole/v17/.suo
 ColorChessConsole/ColorChessConsole/obj/Debug/net6.0/ColorChessConsole.GeneratedMSBuildEditorConfig.editorconfig
 *.v2
 *.editorconfig
+ColorChessConsole/.vs/ColorChessConsole/v17/.suo
+*.v2
+*.pdb
+*.exe
+*.cache
+*.cache
+*.dll
+*.json

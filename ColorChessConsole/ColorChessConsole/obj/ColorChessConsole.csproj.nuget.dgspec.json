@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Git\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole.csproj": {}
+    "D:\\Github\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole.csproj": {}
   },
   "projects": {
-    "C:\\Git\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole.csproj": {
+    "D:\\Github\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Git\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole.csproj",
+        "projectUniqueName": "D:\\Github\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole.csproj",
         "projectName": "ColorChessConsole",
-        "projectPath": "C:\\Git\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole.csproj",
-        "packagesPath": "C:\\Users\\tealvl\\.nuget\\packages\\",
-        "outputPath": "C:\\Git\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole\\obj\\",
+        "projectPath": "D:\\Github\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole.csproj",
+        "packagesPath": "C:\\Users\\korya\\.nuget\\packages\\",
+        "outputPath": "D:\\Github\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\tealvl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\korya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

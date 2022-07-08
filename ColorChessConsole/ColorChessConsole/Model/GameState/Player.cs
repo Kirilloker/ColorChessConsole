@@ -4,7 +4,7 @@ public class Player
 {
     public int number;
     private CornerType corner;
-    //private Color color;
+    private ColorType color;
     private PlayerType type;
 
     List<Figure> figures;
@@ -15,7 +15,7 @@ public class Player
     {
         number = anotherPlayer.number;
         corner = anotherPlayer.corner;
-        //color = anotherPlayer.color;
+        color = anotherPlayer.color;
         type = anotherPlayer.type;
 
         this.figures = new List<Figure>();
@@ -24,5 +24,25 @@ public class Player
         {
             this.figures.Add(new Figure(anotherPlayer.figures[i]));
         }
+    }
+
+    public override string ToString()
+    {
+        string Logs = "";
+
+        Logs += "Number: " + number.ToString() + "\n";
+
+        Logs += "Type: " + Types.ToString(type) + "\n";
+
+        Logs += "Corner: " + Types.ToString(corner) + "\n";
+
+        Logs += "Color: " + Types.ToString(color) + "\n";
+
+        for (int i = 0; i < figures.Count; i++)
+        {
+            Logs += figures[i].ToString() + "\n";
+        }
+
+        return Logs;
     }
 }

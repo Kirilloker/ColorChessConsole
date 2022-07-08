@@ -20,4 +20,17 @@ public class Figure
     }
 
     public int GetNumberPlayer() { return player.number; }
+
+    public override string ToString()
+    {
+        string Logs = "";
+
+        Logs += "Position: " + pos.ToString() + "\n";
+
+        Logs += "Type: " + Types.ToString(type) + "\n";
+
+        Logs += "Number Player: " + GetNumberPlayer().ToString() + "\n";
+
+        return Logs;
+    }
 }
