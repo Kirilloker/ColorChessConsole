@@ -87,7 +87,7 @@ class QueenAlgorithm : WayCalcStrategy
         return avaibleCell;
     }
 
-    public List<Cell> Way(Map map, Position startPos, Position endPos)
+    public List<Cell> Way(Map map, Position startPos, Position endPos, Figure _figure)
     {
         List<Cell> way = new List<Cell>();
 

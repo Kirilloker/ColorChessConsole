@@ -36,6 +36,5 @@ public class Map
         {
             players.Add(new Player(anotherMap.players[i]));
         }
-
     }
 }

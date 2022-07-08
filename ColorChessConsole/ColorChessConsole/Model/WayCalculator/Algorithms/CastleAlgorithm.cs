@@ -35,7 +35,7 @@ class CastleAlgorithm : WayCalcStrategy
         return avaibleCell;
     }
 
-    public List<Cell> Way(Map map, Position startPos, Position endPos)
+    public List<Cell> Way(Map map, Position startPos, Position endPos, Figure _figure)
     {
         // Не уверен насчёт правильности, но вроде выглядит не плохо
         List<Cell> way = new List<Cell>();
