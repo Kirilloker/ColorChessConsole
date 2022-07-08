@@ -1,18 +1,16 @@
-﻿using System.Collections.Generic;
-
-namespace ColorChessConsole;
+﻿namespace ColorChessConsole;
 
 public class Map
 {
     public Cell[,] cells = null;
-    //List<Player> players = new List<Player>();
+    List<Player> players = new List<Player>();
 
     private Map() { }
 
-    public Map(Cell[,] _cells) // List<Player> _players
+    public Map(Cell[,] _cells, List<Player> _players)
     {
         this.cells = _cells;
-        //this.players = _players;
+        this.players = _players;
     }
 
     public Cell GetCell(Position posCell)
@@ -32,7 +30,12 @@ public class Map
             }
         }
 
-        // + Players
+        List<Player> players = new List<Player>();
+
+        for (int i = 0; i < anotherMap.players.Count; i++)
+        {
+            players.Add(new Player(anotherMap.players[i]));
+        }
 
     }
 }

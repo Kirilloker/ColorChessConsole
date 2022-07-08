@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-
-
-namespace ColorChessConsole;
+﻿namespace ColorChessConsole;
 
 public class Player
 {
@@ -10,7 +7,7 @@ public class Player
     //private Color color;
     private PlayerType type;
 
-    //List<Figure> figures;
+    List<Figure> figures;
 
     private Player() { }
 
@@ -21,12 +18,11 @@ public class Player
         //color = anotherPlayer.color;
         type = anotherPlayer.type;
 
-        //this.figures = new List<Figure>();
-        
-        //for (int i = 0; i < anotherPlayer.Count; i++)
-        //{
-        //    this.figures.Add(new Figure(anotherPlayer.figures[i]));
-        //}
+        this.figures = new List<Figure>();
 
+        for (int i = 0; i < anotherPlayer.figures.Count; i++)
+        {
+            this.figures.Add(new Figure(anotherPlayer.figures[i]));
+        }
     }
 }
