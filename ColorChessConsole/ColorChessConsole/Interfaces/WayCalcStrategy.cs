@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ColorChessConsole;
 interface WayCalcStrategy
 {
-    public List<Cell> Execute(Map _map, Figure _figure);
-    public List<Cell> Execute(Map map, Position startPos, Position endPos);
+    public List<Cell> AllSteps(Map _map, Figure _figure);
+    public List<Cell> Way(Map map, Position startPos, Position endPos);
 }
 

@@ -1,9 +1,9 @@
-﻿
-namespace ColorChessConsole.TestPattern;
+﻿namespace ColorChessConsole.TestPattern;
 
-public class Message 
+public class Message
 {
     object o;
+    public Type type = typeof(Position);
 
     public Message(object _o)
     {

@@ -8,9 +8,9 @@ class WayCalcSystem
     {
         algorithm = _algorithm;
     }
-    private static void ChooseAlgorithm(FigureType _targetAlgorithm)
+    private static void ChooseAlgorithm(FigureType targetAlgorithm)
     {
-        switch (_targetAlgorithm)
+        switch (targetAlgorithm)
         {
             case FigureType.Pawn:
                 SetAlgorithm(new PawnAlgorithm());
@@ -35,18 +35,16 @@ class WayCalcSystem
                 break;
         }
     }
-    public static List<Cell> CalcAllSteps(Map _map, Figure _figure)
+    public static List<Cell> CalcAllSteps(Map map, Figure figure)
     {
-        FigureType targetAlgorithm = _figure.type;
-        ChooseAlgorithm(targetAlgorithm);
-        return algorithm.Execute(_map, _figure);
+        ChooseAlgorithm(figure.type);
+        return algorithm.AllSteps(map, figure);
     }
 
-    public static List<Cell> CalcWay(Map _map, Position _startPos, Position _endPos, Figure _figure)
+    public static List<Cell> CalcWay(Map map, Position startPos, Position endPos, Figure figure)
     {
-        FigureType targetAlgorithm = _figure.type;
-        ChooseAlgorithm(targetAlgorithm);
-        return algorithm.Execute(_map, _startPos, _endPos);
+        ChooseAlgorithm(figure.type);
+        return algorithm.Way(map, startPos, endPos);
     }
 }
 
