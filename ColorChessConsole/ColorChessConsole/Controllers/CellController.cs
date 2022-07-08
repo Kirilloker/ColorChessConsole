@@ -1,5 +1,5 @@
 ﻿namespace ColorChessConsole;
-class CellController : ICommandInvoker
+class CellController 
 {
     private CellView? cell;
     
@@ -7,43 +7,5 @@ class CellController : ICommandInvoker
     {
         cell = _cell;
     }
-
-
-    #region CopyMoments
-
-    private ICommand? command;
-    static private CellController? instance;
-    private readonly MediatorController mediator;
-
-    public static CellController Instance()
-    {
-        if (instance == null)
-        {
-            instance = new CellController();
-            return instance;
-        }
-        else
-            return instance;
-    }
-
-
-    private CellController()
-    {
-        instance = this;
-        mediator = MediatorController.Instance();
-    }
-
-
-    public void SendCommand()
-    {
-        command.Execute();
-    }
-
-    public void SetCommand(ICommand _command)
-    {
-        command = _command;
-    }
-
-    #endregion
 }
 

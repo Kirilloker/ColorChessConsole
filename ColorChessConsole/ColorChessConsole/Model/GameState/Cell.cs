@@ -19,7 +19,7 @@ public class Cell
         this.type = CellType.Empty;
         this.figureType = FigureType.Empty;
 
-        this.controller = CellController.Instance();
+        //this.controller = CellController.Instance();
     }
 
     public Cell(Cell anotherCell)
@@ -28,14 +28,13 @@ public class Cell
         this.numberPlayer = anotherCell.numberPlayer;
         this.type = anotherCell.type;
         this.figureType = anotherCell.figureType;
-        this.controller = CellController.Instance();
+        //this.controller = CellController.Instance();
     }
 
 
     public void Click()
     {
-        controller.SetCommand(new CellOnClickNotification(pos));
-        controller.SendCommand();
+      
     }
 
     public void StatePrompt(bool statePrompt)

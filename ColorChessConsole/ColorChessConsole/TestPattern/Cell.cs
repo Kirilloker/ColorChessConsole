@@ -10,7 +10,7 @@ public class Cell
     }
     public void Click() 
     {
-        Repartion.Instance().SendMessage(new Message(myPos), TypeRecipient.GameManager, TypeEvent.ClickCell);
+        Repartion.Instance().SendMessage(new Message(myPos), EnumTypes.GameManager, TypeEvent.ClickCell);
     }
 }
 

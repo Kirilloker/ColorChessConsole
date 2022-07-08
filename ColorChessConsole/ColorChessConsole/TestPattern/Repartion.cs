@@ -24,11 +24,11 @@ public class Repartion
     }
 
 
-    public void SendMessage(Message message, TypeRecipient recipient, TypeEvent typeEvent)
+    public void SendMessage(Message message, EnumTypes recipient, TypeEvent typeEvent)
     {
         switch (recipient)
         {
-            case TypeRecipient.GameManager:
+            case EnumTypes.GameManager:
                 SendMessageGameManager(message, typeEvent);
                 break;
             default:
