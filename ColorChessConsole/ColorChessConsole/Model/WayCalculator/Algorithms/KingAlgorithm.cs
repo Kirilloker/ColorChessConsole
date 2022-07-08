@@ -15,9 +15,9 @@ class KingAlgorithm : WayCalcStrategy
 
                 Cell cell = map.GetCell(posCell);
 
-                if (Check.SelfPoint(posCell, posFigure) ||
-                    Check.BusyCell(cell) ||
-                    Check.Avaible(posCell, figure, map))
+                if (Check.SelfPoint(posCell, posFigure) == true||
+                    Check.BusyCell(cell) == true||
+                   (Check.Avaible(posCell, figure, map) == false))
                     { continue; }
 
 

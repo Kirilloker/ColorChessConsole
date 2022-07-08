@@ -6,7 +6,7 @@ public class Figure
     public FigureType type;
     public Player? player;
     public Dictionary<CellType, bool>[]? require;
-    //private FigureView;
+    
 
     public Figure() { }
 

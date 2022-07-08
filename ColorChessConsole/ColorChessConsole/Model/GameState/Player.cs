@@ -7,7 +7,8 @@ public class Player
     public ColorType color;
     public PlayerType type;
 
-    List<Figure> figures;
+    public List<Figure> figures;
+
 
     public Player() { }
 

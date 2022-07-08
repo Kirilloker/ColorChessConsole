@@ -5,7 +5,7 @@ public class Cell
     public Position pos;
     public int numberPlayer;
     public CellType type;
-    public FigureType figureType;
+    public Figure figure;
 
     public Cell() { }
 
@@ -14,7 +14,7 @@ public class Cell
         this.pos = pos;
         this.numberPlayer = -1;
         this.type = CellType.Empty;
-        this.figureType = FigureType.Empty;
+        this.figure = null;
 
         //this.controller = CellController.Instance();
     }
@@ -24,14 +24,14 @@ public class Cell
         this.pos = new Position(anotherCell.pos);
         this.numberPlayer = anotherCell.numberPlayer;
         this.type = anotherCell.type;
-        this.figureType = anotherCell.figureType;
+        this.figure = anotherCell.figure;
         //this.controller = CellController.Instance();
     }
 
 
     public void Click()
     {
-      
+
     }
 
     public void StatePrompt(bool statePrompt)
@@ -40,13 +40,26 @@ public class Cell
     }
 
 
-    //public void ChangeColor()
-    //{
-    //}
+    public FigureType FigureType
+    {
+        get
+        {
+            if (this.figure == null) return FigureType.Empty;
+            return figure.type;
+        }
+    }
+
 
     public bool Avaible(Dictionary<CellType, bool>[] require, int numberPlayerFigure)
     {
         // Может ли фигура наступить на такой тип клетки
+
+        // Если в словаре нет такого типа клетки, то сразу возвращаем False
+        if ((require[0].ContainsKey(type) || require[1].ContainsKey(type)) == false)
+        {
+            return false;
+        }
+
         if (numberPlayer == numberPlayerFigure) return require[0][type];
         else return require[1][type];
     }
@@ -65,7 +78,7 @@ public class Cell
 
         Logs += "Number Player: " + numberPlayer.ToString() + "\n";
 
-        Logs += "Figure: " + Types.ToString(figureType) + "\n";
+        Logs += "Figure: " + Types.ToString(figure.type) + "\n";
 
         return Logs;
     }
