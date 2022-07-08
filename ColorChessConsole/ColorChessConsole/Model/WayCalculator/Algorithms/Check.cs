@@ -24,6 +24,7 @@ public static class Check
         return map.cells[posCell.X, posCell.Y].Avaible(figure.require, figure.GetNumberPlayer());
     }
 
+
     public static bool BusyCell(Cell cell)
     {
         if (cell.figureType != FigureType.Empty) { return true; }
