@@ -58,8 +58,6 @@ static void Main()
 
 
 
-    
-
     int xStart;
     int yStart;
     int xEnd;
@@ -69,10 +67,10 @@ static void Main()
     {
         Printer.PrintMap(map);
 
-        Console.Write("xStart: ");
+        Console.Write("x Start: ");
         xStart = Convert.ToInt16(Console.ReadLine());
 
-        Console.Write("yStart: ");
+        Console.Write("y Start: ");
         yStart = Convert.ToInt16(Console.ReadLine());
 
         Position posStart = new Position(xStart, yStart);

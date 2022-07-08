@@ -40,7 +40,7 @@ class GameStateBuilder
                 playersDiscription.PlayerNumbers[i]));
         }
 
-        gameState.players.
+        //gameState.players.
         return gameState;
     }
 

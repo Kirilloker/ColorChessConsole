@@ -17,7 +17,7 @@ namespace ColorChessConsole;
     {
         cell.pos = pos;
         cell.numberPlayer = numOfPlayer;
-        cell.figureType = figureType;
+        //cell.figureType = figureType;
         cell.type = cellType;
         return cell;
     }

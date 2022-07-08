@@ -36,7 +36,7 @@ public class Cell
 
     public void StatePrompt(bool statePrompt)
     {
-        cellView.StatePrompt(statePrompt);
+        //cellView.StatePrompt(statePrompt);
     }
 
 
