@@ -4,9 +4,6 @@ public class Test
 {
     void Test1()
     {
-        int numberPlayer = 1;
-        int numberPlayerCell = 2;
-        CellType cellType = CellType.Dark;
 
         Dictionary<CellType, bool>[] require = new Dictionary<CellType, bool>[]
         {
