@@ -43,6 +43,8 @@ class BishopAlgorithm : WayCalcStrategy
             {
                 Position posCell = new Position((startPos.X + j * (i % 2)), (startPos.Y + j * (i % 2)  * (Math.Abs(i) - 2)));
                 
+                if (Check.OutOfRange(posCell, map) == true) { continue; }
+
                 way.Add(map.GetCell(posCell));
 
                 if (posCell == endPos) { return way; }

@@ -19,8 +19,6 @@ class KingBuilder : FigureBuilder
             new Dictionary<CellType, bool>() // Another
             {
                 [CellType.Empty] = true, // На пустые
-                [CellType.Paint] = false, // На чужие закрашенные
-                [CellType.Dark] = false, // На чужие захваченные
             }
         };
     }

@@ -7,9 +7,10 @@ public class Player
     private ColorType color;
     private PlayerType type;
 
-    List<Figure> figures;
+    public List<Figure> figures;
 
-    private Player() { }
+
+    public Player() { }
 
     public Player(Player anotherPlayer)
     {

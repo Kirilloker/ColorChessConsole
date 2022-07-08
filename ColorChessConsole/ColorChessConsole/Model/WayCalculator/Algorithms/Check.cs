@@ -21,13 +21,13 @@ public static class Check
 
     public static bool Avaible(Position posCell, Figure figure, Map map)
     {
-        return map.cells[posCell.X, posCell.Y].Avaible(figure.require, figure.GetNumberPlayer());
+        return map.GetCell(posCell).Avaible(figure.require, figure.GetNumberPlayer());
     }
 
 
     public static bool BusyCell(Cell cell)
     {
-        if (cell.figureType != FigureType.Empty) { return true; }
+        if (cell.FigureType != FigureType.Empty) { return true; }
         return false;
     }
 }

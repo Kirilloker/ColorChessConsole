@@ -97,9 +97,11 @@ class QueenAlgorithm : WayCalcStrategy
 
             if (Math.Abs(i) == 3)
             {
-                for (float j = 0; j < map.cells.GetLength(0); j++)
+                for (int j = 0; j < map.cells.GetLength(0); j++)
                 {
                     Position posCell = new Position(startPos.X + j * (i % 2), startPos.Y);
+
+                    if (Check.OutOfRange(posCell, map) == true) { break; }
 
                     way.Add(map.GetCell(posCell));
 
@@ -108,9 +110,11 @@ class QueenAlgorithm : WayCalcStrategy
 
                 way.Clear();
 
-                for (float j = 0; j < map.cells.GetLength(0); j++)
+                for (int j = 0; j < map.cells.GetLength(0); j++)
                 {
                     Position posCell = new Position(startPos.X + j * (i % 2), startPos.Y + j * (i % 2));
+
+                    if (Check.OutOfRange(posCell, map) == true) { break; }
 
                     way.Add(map.GetCell(posCell));
 
@@ -123,6 +127,8 @@ class QueenAlgorithm : WayCalcStrategy
                 {
                     Position posCell = new Position(startPos.X, startPos.Y + j * (i % 2));
 
+                    if (Check.OutOfRange(posCell, map) == true) { break; }
+
                     way.Add(map.GetCell(posCell));
 
                     if (posCell == endPos) { return way; }
@@ -133,6 +139,8 @@ class QueenAlgorithm : WayCalcStrategy
                 for (int j = 0; j < map.cells.GetLength(1); j++)
                 {
                     Position posCell = new Position(startPos.X + j * (i % 2), startPos.Y - j * (i % 2));
+
+                    if (Check.OutOfRange(posCell, map) == true) { break; }
 
                     way.Add(map.GetCell(posCell));
 

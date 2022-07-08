@@ -3,7 +3,7 @@
 public class Map
 {
     public Cell[,] cells = null;
-    List<Player> players = new List<Player>();
+    public List<Player> players = new List<Player>();
 
     private Map() { }
 

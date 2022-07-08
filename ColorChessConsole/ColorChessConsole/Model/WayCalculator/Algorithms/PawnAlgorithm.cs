@@ -21,7 +21,7 @@ class PawnAlgorithm : WayCalcStrategy
 
                 // Чтобы не съесть свою фигуру
                 if (cell.numberPlayer == figure.GetNumberPlayer() &&
-                    cell.figureType != FigureType.Empty) { continue; }
+                    cell.FigureType != FigureType.Empty) { continue; }
 
                 if (Check.Avaible(posCell, figure, map) == false) { continue; }
 
