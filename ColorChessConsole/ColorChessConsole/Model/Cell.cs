@@ -19,7 +19,7 @@ public class Cell
         this.type = CellType.Empty;
         this.figureType = FigureType.Empty;
 
-        controller = CellController.Instance();
+        this.controller = CellController.Instance();
     }
 
     public Cell(Cell anotherCell)

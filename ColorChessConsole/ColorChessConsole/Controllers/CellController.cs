@@ -3,13 +3,11 @@ class CellController : ICommandInvoker
 {
     private CellView? cell;
     
-
-
-
     public void setCell(CellView _cell)
     {
         cell = _cell;
     }
+
 
     #region CopyMoments
 
@@ -45,6 +43,7 @@ class CellController : ICommandInvoker
     {
         command = _command;
     }
+
     #endregion
 }
 
