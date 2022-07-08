@@ -1,5 +1,5 @@
 ﻿namespace ColorChessConsole;
-class CameraController : ICommandInvoker
+class CameraController 
 {
 
 }
