@@ -7,9 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Model\GameStateBuilder\Builders\" />
-    <Folder Include="Model\GameStateBuilder\" />
-  </ItemGroup>
-
 </Project>

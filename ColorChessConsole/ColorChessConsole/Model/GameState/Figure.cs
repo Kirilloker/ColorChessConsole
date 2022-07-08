@@ -2,13 +2,13 @@
 
 public class Figure
 {
-    public Position pos;
-    public FigureType type;
-    public Player player;
-    public Dictionary<CellType, bool>[] require;
+    public Position? pos;
+    public FigureType? type;
+    public Player? player;
+    public Dictionary<CellType, bool>[]? require;
     //private FigureView;
 
-    private Figure() { }
+    public Figure() { }
 
     public Figure(Figure anotherFigure)
     {
