@@ -44,3 +44,12 @@ public enum PlayerType
     Online
 }
 
+public enum ColorType
+{
+    Red,
+    Blue,
+    Yellow,
+    Green,
+    Purple
+}
+

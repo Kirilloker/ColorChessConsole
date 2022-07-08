@@ -44,7 +44,7 @@ class WayCalcSystem
     public static List<Cell> CalcWay(Map map, Position startPos, Position endPos, Figure figure)
     {
         ChooseAlgorithm(figure.type);
-        return algorithm.Way(map, startPos, endPos);
+        return algorithm.Way(map, startPos, endPos, figure);
     }
 }
 

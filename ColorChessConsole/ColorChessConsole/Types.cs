@@ -78,6 +78,26 @@
             }
         }
 
+        public static string ToString(ColorType color)
+        {
+            switch (color)
+            {
+                case ColorType.Red:
+                    return "Red";
+                case ColorType.Blue:
+                    return "Blue";
+                case ColorType.Yellow:
+                    return "Yellow";
+                case ColorType.Green:
+                    return "Green";
+                case ColorType.Purple:
+                    return "Purple";
+                default:
+                    DebugConsole.Print("Unknown type Color");
+                    return "WARNING!";
+            }
+        }
+
         // На вход получает строку - возращает Енуменатор
         public static CellType ToType(string strCellType)
         {

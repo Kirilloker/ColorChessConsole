@@ -34,7 +34,7 @@ class HorseAlgorithm : WayCalcStrategy
     }
 
 
-    public List<Cell> Way(Map map, Position startPos, Position endPos, Figure _figure)
+    public List<Cell> Way(Map map, Position startPos, Position endPos, Figure figure)
     {
         List<Cell> way = new List<Cell>();
 
@@ -50,12 +50,12 @@ class HorseAlgorithm : WayCalcStrategy
         }
 
 
-        if (jump_horse(pos1, map))
+        if (jump_horse(pos1, map, figure))
         {
             way.Add(map.GetCell(pos1));
         }
 
-        if (jump_horse(pos2, map))
+        if (jump_horse(pos2, map, figure))
         {
             way.Add(map.GetCell(pos2));
         }
@@ -67,7 +67,7 @@ class HorseAlgorithm : WayCalcStrategy
     }
 
 
-    bool jump_horse(Position posCell, Map map)
+    bool jump_horse(Position posCell, Map map, Figure figure)
     {
         Cell cell = map.GetCell(posCell);
 

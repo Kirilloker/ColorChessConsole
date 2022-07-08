@@ -31,7 +31,7 @@ class BishopAlgorithm : WayCalcStrategy
         return avaibleCell;
     }
 
-    public List<Cell> Way(Map map, Position startPos, Position endPos, Figure _figure)
+    public List<Cell> Way(Map map, Position startPos, Position endPos, Figure figure)
     {
         List<Cell> way = new List<Cell>();
 
