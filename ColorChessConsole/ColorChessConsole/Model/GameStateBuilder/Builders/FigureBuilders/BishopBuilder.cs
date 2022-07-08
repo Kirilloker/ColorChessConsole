@@ -20,7 +20,6 @@ class BishopBuilder : FigureBuilder
             {
                 [CellType.Empty] = true, // На пустые
                 [CellType.Paint] = true, // На чужие закрашенные
-                [CellType.Dark] = false, // На чужие захваченные
             }
         };
     }

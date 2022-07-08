@@ -14,7 +14,8 @@ public enum CellType
 {
     Empty,
     Paint,
-    Dark
+    Dark,
+    Block
 }
 
 public enum FigureType

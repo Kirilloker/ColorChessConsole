@@ -2,15 +2,12 @@
 
 public class Cell
 {
-    private CellView cellView;
-    private CellController controller;
-
     public Position pos;
     public int numberPlayer;
     public CellType type;
     public FigureType figureType;
 
-    private Cell() { }
+    public Cell() { }
 
     public Cell(Position pos)
     {

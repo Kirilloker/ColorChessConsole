@@ -3,7 +3,7 @@
 public class Figure
 {
     public Position? pos;
-    public FigureType? type;
+    public FigureType type;
     public Player? player;
     public Dictionary<CellType, bool>[]? require;
     //private FigureView;

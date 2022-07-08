@@ -3,13 +3,13 @@
 public class Player
 {
     public int number;
-    private CornerType corner;
-    private ColorType color;
-    private PlayerType type;
+    public CornerType corner;
+    public ColorType color;
+    public PlayerType type;
 
     List<Figure> figures;
 
-    private Player() { }
+    public Player() { }
 
     public Player(Player anotherPlayer)
     {

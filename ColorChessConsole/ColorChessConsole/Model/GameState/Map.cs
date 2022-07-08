@@ -3,9 +3,9 @@
 public class Map
 {
     public Cell[,] cells = null;
-    List<Player> players = new List<Player>();
+    public List<Player> players = new List<Player>();
 
-    private Map() { }
+     public Map() { }
 
     public Map(Cell[,] _cells, List<Player> _players)
     {
