@@ -1,6 +1,0 @@
-﻿namespace ColorChessConsole;
-class FigureController 
-{
-
-}
-

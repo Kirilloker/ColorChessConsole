@@ -4,16 +4,18 @@ public class Cell
 {
     public Position pos;
     public CellType type;
-    public Figure figure;
-
+    public Figure? figure;
+    public int numberPlayer;
     public Cell() { }
 
+#if DEBUG
     public Cell(Position pos)
     {
         this.pos = pos;
         this.type = CellType.Empty;
         this.figure = null;
     }
+ #endif
 
     public Cell(Cell anotherCell)
     {

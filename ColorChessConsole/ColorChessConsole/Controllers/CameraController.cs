@@ -1,5 +1,0 @@
-﻿namespace ColorChessConsole;
-class CameraController 
-{
-
-}

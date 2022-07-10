@@ -13,12 +13,12 @@ namespace ColorChessConsole;
         cell = new Cell();
     }
 
-    public Cell MakeCell(Position pos, int numOfPlayer, CellType cellType, FigureType figureType)
+    public Cell MakeCell(Position pos, CellType cellType)
     {
         cell.pos = pos;
-        cell.numberPlayer = numOfPlayer;
-        //cell.figureType = figureType;
         cell.type = cellType;
+        cell.figure = null;
+        cell.numberPlayer = -1;
         return cell;
     }
  }
