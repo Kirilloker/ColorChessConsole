@@ -18,6 +18,11 @@ public class Map
         return cells[posCell.X, posCell.Y];
     }
 
+    public Cell GetCell(int x, int y)
+    {
+        return cells[x, y];
+    }
+
     public Map(Map anotherMap)
     {
         cells = new Cell[anotherMap.cells.GetLength(0), anotherMap.cells.GetLength(1)];

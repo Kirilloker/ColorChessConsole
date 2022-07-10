@@ -3,7 +3,6 @@
 public class Cell
 {
     public Position pos;
-    public int numberPlayer;
     public CellType type;
     public Figure figure;
 
@@ -12,31 +11,21 @@ public class Cell
     public Cell(Position pos)
     {
         this.pos = pos;
-        this.numberPlayer = -1;
         this.type = CellType.Empty;
         this.figure = null;
-
-        //this.controller = CellController.Instance();
     }
 
     public Cell(Cell anotherCell)
     {
         this.pos = new Position(anotherCell.pos);
-        this.numberPlayer = anotherCell.numberPlayer;
         this.type = anotherCell.type;
         this.figure = anotherCell.figure;
-        //this.controller = CellController.Instance();
     }
 
 
     public void Click()
     {
 
-    }
-
-    public void StatePrompt(bool statePrompt)
-    {
-        //cellView.StatePrompt(statePrompt);
     }
 
 
@@ -49,6 +38,16 @@ public class Cell
         }
     }
 
+    public int NumberPlayer
+    {
+        get
+        {
+            if (this.figure == null) return -1;
+            return this.figure.Number;
+        }
+    }
+
+
 
     public bool Avaible(Dictionary<CellType, bool>[] require, int numberPlayerFigure)
     {
@@ -60,7 +59,7 @@ public class Cell
             return false;
         }
 
-        if (numberPlayer == numberPlayerFigure) return require[0][type];
+        if (NumberPlayer == numberPlayerFigure) return require[0][type];
         else return require[1][type];
     }
 
@@ -76,7 +75,7 @@ public class Cell
 
         Logs += "Type: " + Types.ToString(type) + "\n";
 
-        Logs += "Number Player: " + numberPlayer.ToString() + "\n";
+        Logs += "Number Player: " + NumberPlayer.ToString() + "\n";
 
         Logs += "Figure: " + Types.ToString(figure.type) + "\n";
 

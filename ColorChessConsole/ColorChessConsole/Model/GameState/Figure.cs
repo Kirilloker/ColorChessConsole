@@ -19,7 +19,14 @@ public class Figure
         //FigureView?
     }
 
-    public int GetNumberPlayer() { return player.number; }
+    public int Number
+    {
+        get
+        {
+            return player.number;
+        }
+    }
+
 
     public override string ToString()
     {
@@ -29,7 +36,7 @@ public class Figure
 
         Logs += "Type: " + Types.ToString(type) + "\n";
 
-        Logs += "Number Player: " + GetNumberPlayer().ToString() + "\n";
+        Logs += "Number Player: " + Number.ToString() + "\n";
 
         return Logs;
     }
