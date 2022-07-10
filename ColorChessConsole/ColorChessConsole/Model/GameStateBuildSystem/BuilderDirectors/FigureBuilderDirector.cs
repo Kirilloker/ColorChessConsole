@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ColorChessConsole;
+﻿namespace ColorChessConsole;
 class FigureBuilderDirector
 {
     private FigureBuilder? builder;
@@ -34,6 +28,7 @@ class FigureBuilderDirector
                 builder = new QueenBuilder();
                 break;
             default:
+                DebugConsole.Print("FigureBuilderDirector not found FigureType");
                 break;
         }
 

@@ -4,3 +4,11 @@
 *.cache
 *.pdb
 ColorChessConsole/.vs/ColorChessConsole/v17/.suo
+*.v1
+*.v2
+ColorChessConsole/.vs/ColorChessConsole/v17/.suo
+*.dll
+*.pdb
+*.exe
+*.dll
+*.cache
