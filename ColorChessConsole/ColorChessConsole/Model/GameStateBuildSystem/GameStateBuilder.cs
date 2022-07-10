@@ -35,10 +35,8 @@ class GameStateBuilder
         }
 
         //Создаем фигуры и передаем ссылку на них игрокам
-        //Перебираем наборы фигур для игроков
         for(int i = 0; i < figureSets.Count; i++)
         {
-            //Перебираем набор фигур конкретного игрока
             for (int j = 0; j < figureSets[i].positions.Count; j++)
             {
                 gameState.players[i].figures.Add(
@@ -60,9 +58,10 @@ class GameStateBuilder
             }
         }
 
-        //Тут мы будем обращаться к GameStateCalculator
-        //И обновлять состояния клеток, номер игрока, и фигуру
-        
+        //Тут мы обращаемся к GameStateCalculator
+        //И обновляем состояния клеток (ставим фигуры на игровое поле)
+        GameStateCalcSystem.UpdateGameStateForBuilder(gameState);
+
         return gameState;
     }
 
