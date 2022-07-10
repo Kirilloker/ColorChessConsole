@@ -21,7 +21,7 @@ public static class Check
 
     public static bool Avaible(Position posCell, Figure figure, Map map)
     {
-        return map.GetCell(posCell).Avaible(figure.require, figure.GetNumberPlayer());
+        return map.GetCell(posCell).Avaible(figure.require, figure.Number);
     }
 
 

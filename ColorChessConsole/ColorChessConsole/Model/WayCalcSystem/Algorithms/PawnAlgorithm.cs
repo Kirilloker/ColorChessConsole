@@ -20,7 +20,7 @@ class PawnAlgorithm : WayCalcStrategy
                 Cell cell = map.GetCell(posCell);
 
                 // Чтобы не съесть свою фигуру
-                if (cell.numberPlayer == figure.GetNumberPlayer() &&
+                if (cell.numberPlayer == figure.Number &&
                     cell.FigureType != FigureType.Empty) { continue; }
 
                 if (Check.Avaible(posCell, figure, map) == false) { continue; }
