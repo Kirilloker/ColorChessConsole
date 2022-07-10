@@ -4,8 +4,9 @@ public class Map
 {
     public Cell[,] cells = null;
     public List<Player> players = new List<Player>();
+    public List<int> scorePlayer = new List<int>();
 
-     public Map() { }
+    public Map() { }
 
     public Map(Cell[,] _cells, List<Player> _players)
     {
@@ -23,13 +24,16 @@ public class Map
         return cells[x, y];
     }
 
+    public int Width { get { return cells.GetLength(0); } }
+    public int Lenght { get { return cells.GetLength(1); } }
+
     public Map(Map anotherMap)
     {
-        cells = new Cell[anotherMap.cells.GetLength(0), anotherMap.cells.GetLength(1)];
+        cells = new Cell[anotherMap.Width, anotherMap.Lenght];
 
-        for (int i = 0; i < anotherMap.cells.GetLength(0); i++)
+        for (int i = 0; i < anotherMap.Width; i++)
         {
-            for (int j = 0; j < anotherMap.cells.GetLength(1); j++)
+            for (int j = 0; j < anotherMap.Lenght; j++)
             {
                 cells[i, j] = new Cell(anotherMap.cells[i, j]);
             }
@@ -51,7 +55,7 @@ public class Map
 
         for (int i = 0; i < cells.GetLength(0); i++)
         {
-            for (int j = 0; j < cells.GetLength(1); j++)
+            for (int j = 0; j < Lenght; j++)
             {
                 Logs += cells[i, j].ToString() + "\n";
             }
