@@ -21,9 +21,7 @@ struct CellDiscription
 {
     public int width;
     public int lenght;
-    public int[,] PlayerNumbers;
     public CellType[,] CellTypes;
-    public FigureType[,] FigureTypes;
 }
 
 //Описывает набор фигур ОДНОГО игрока
