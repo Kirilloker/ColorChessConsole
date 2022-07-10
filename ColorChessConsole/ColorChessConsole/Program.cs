@@ -41,7 +41,7 @@ static void Main()
     figure.player = player;
 
     Position posFigure = new Position(5, 5);
-    figure.type = FigureType.Bishop;
+    figure.type = FigureType.Horse;
     figure.pos = posFigure;
     figure.require = require;
 
@@ -54,9 +54,15 @@ static void Main()
 
     map.GetCell(posFigure).figure = figure;
     map.GetCell(posFigure).type = CellType.Paint;
-    map.GetCell(posFigure).numberPlayer = figure.GetNumberPlayer();
+    map.GetCell(posFigure).numberPlayer = figure.Number;
 
-
+    for (int i = 6; i < 8; i++)
+    {
+        for (int j = 6; j < 8; j++)
+        {
+            map.GetCell(i, j).type = CellType.Block;
+        }
+    }
 
     int xStart;
     int yStart;
@@ -121,7 +127,7 @@ static void Main()
 
         for (int i = 0; i < Way.Count; i++)
         {
-            Way[i].numberPlayer = figure.GetNumberPlayer();
+            Way[i].numberPlayer = figure.Number;
             Way[i].type = CellType.Paint;
         }
 
@@ -129,6 +135,11 @@ static void Main()
         Way[Way.Count - 1].figure = figure;
         figure.pos = posEnd;
 
+        Test.TestDarkCapture(map);
+
+
+        int playerCount = 4;
+        int playerStep = 1;
     }
 }
 

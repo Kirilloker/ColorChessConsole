@@ -9,18 +9,4 @@ class CellView
         cellModel = _cellModel;
     }
 
-    public void OnMouseClick()
-    {
-        cellModel.Click();
-    }
-    
-    //public void ChangeView()
-    //{
-
-    //}
-
-    public void StatePrompt(bool state)
-    {
-        //Prompt.Mesh(state);
-    }
 }

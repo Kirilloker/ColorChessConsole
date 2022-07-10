@@ -45,6 +45,9 @@ public class Printer
             case CellType.Dark:
                 str += "D";
                 break;
+            case CellType.Block:
+                str += "B";
+                break;
             default:
                 str += "!";
                 break;

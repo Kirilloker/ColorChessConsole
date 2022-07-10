@@ -4,6 +4,7 @@ public class Cell
 {
     public Position pos;
     public CellType type;
+    public int numberPlayer;
     public Figure figure;
 
     public Cell() { }
@@ -13,6 +14,7 @@ public class Cell
         this.pos = pos;
         this.type = CellType.Empty;
         this.figure = null;
+        numberPlayer = -1;
     }
 
     public Cell(Cell anotherCell)
@@ -20,12 +22,6 @@ public class Cell
         this.pos = new Position(anotherCell.pos);
         this.type = anotherCell.type;
         this.figure = anotherCell.figure;
-    }
-
-
-    public void Click()
-    {
-
     }
 
 
@@ -38,14 +34,6 @@ public class Cell
         }
     }
 
-    public int NumberPlayer
-    {
-        get
-        {
-            if (this.figure == null) return -1;
-            return this.figure.Number;
-        }
-    }
 
 
 
@@ -59,7 +47,7 @@ public class Cell
             return false;
         }
 
-        if (NumberPlayer == numberPlayerFigure) return require[0][type];
+        if (numberPlayer == numberPlayerFigure) return require[0][type];
         else return require[1][type];
     }
 
@@ -75,7 +63,7 @@ public class Cell
 
         Logs += "Type: " + Types.ToString(type) + "\n";
 
-        Logs += "Number Player: " + NumberPlayer.ToString() + "\n";
+        Logs += "Number Player: " + numberPlayer.ToString() + "\n";
 
         Logs += "Figure: " + Types.ToString(figure.type) + "\n";
 

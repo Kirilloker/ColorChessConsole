@@ -21,10 +21,7 @@ public class Figure
 
     public int Number
     {
-        get
-        {
-            return player.number;
-        }
+        get { return player.number; }
     }
 
 

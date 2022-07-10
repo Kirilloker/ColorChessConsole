@@ -16,8 +16,6 @@ namespace ColorChessConsole;
     public Cell MakeCell(Position pos, int numOfPlayer, CellType cellType, FigureType figureType)
     {
         cell.pos = pos;
-        cell.numberPlayer = numOfPlayer;
-        //cell.figureType = figureType;
         cell.type = cellType;
         return cell;
     }
