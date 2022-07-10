@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 *.dll
 *.pdb
 *.cache
@@ -12,3 +13,6 @@ ColorChessConsole/.vs/ColorChessConsole/v17/.suo
 *.exe
 *.dll
 *.cache
+=======
+/ColorChessConsole/.vs/ColorChessConsole/DesignTimeBuild/.dtbcache.v2
+>>>>>>> parent of 705b5ac (Types!)
