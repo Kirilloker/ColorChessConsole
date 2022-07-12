@@ -39,11 +39,11 @@ public class Map
             }
         }
 
-        List<Player> players = new List<Player>();
+        this.players = new List<Player>();
 
         for (int i = 0; i < anotherMap.players.Count; i++)
         {
-            players.Add(new Player(anotherMap.players[i]));
+            this.players.Add(new Player(anotherMap.players[i]));
         }
     }
 

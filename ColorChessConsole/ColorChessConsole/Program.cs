@@ -35,7 +35,7 @@ static void Main()
     Map map = new Map(cells, players);
 
     Player player = new Player();
-    player.number = 1;
+    player.number = 0;
 
     Figure figure = new Figure();
     figure.player = player;
@@ -56,13 +56,35 @@ static void Main()
     map.GetCell(posFigure).type = CellType.Paint;
     map.GetCell(posFigure).numberPlayer = figure.Number;
 
-    for (int i = 6; i < 8; i++)
-    {
-        for (int j = 6; j < 8; j++)
-        {
-            map.GetCell(i, j).type = CellType.Block;
-        }
-    }
+    //for (int i = 6; i < 8; i++)
+    //{
+    //    for (int j = 6; j < 8; j++)
+    //    {
+    //        map.GetCell(i, j).type = CellType.Block;
+    //    }
+    //}
+
+    Player player1 = new Player();
+    player1.number = 1;
+
+    Figure figure1 = new Figure();
+    figure1.player = player1;
+
+    Position posFigure1 = new Position(4, 3);
+    figure1.type = FigureType.Horse;
+    figure1.pos = posFigure1;
+    figure1.require = require;
+
+    player1.figures = new List<Figure>();
+    player1.figures.Add(figure1);
+
+    map.players.Add(player1);
+
+
+
+    map.GetCell(posFigure1).figure = figure1;
+    map.GetCell(posFigure1).type = CellType.Paint;
+    map.GetCell(posFigure1).numberPlayer = figure1.Number;
 
     int xStart;
     int yStart;
@@ -120,27 +142,12 @@ static void Main()
 
         Console.WriteLine("Way cell:");
 
-        for (int i = 0; i < Way.Count; i++)
-        {
-            Console.WriteLine(Way[i].pos.ToString());
-        }
-
-        for (int i = 0; i < Way.Count; i++)
-        {
-            Way[i].numberPlayer = figure.Number;
-            Way[i].type = CellType.Paint;
-        }
-
-        Way[0].figure = null;
-        Way[Way.Count - 1].figure = figure;
-        figure.pos = posEnd;
-
-        Test.TestDarkCapture(map);
+        map = GameStateCalcSystem.ApplyStep(map, map.GetCell(posStart).figure, map.GetCell(posEnd));
 
 
-        int playerCount = 4;
-        int playerStep = 1;
+        //Test.TestDarkCapture(map);
 
+        TestAI.AlphaBeta(map, 0, int.MinValue, int.MaxValue);
 
     }
 }

@@ -9,9 +9,25 @@ class GameStateCalcSystem
         return gameState;
     }
 
-    public static Map ApplyStep(Map _gameState, Step step)
+    public static Map ApplyStep(Map _gameState, Figure figure, Cell endCell)
     {
+        // В игре это работать не будет, но нужно для тестов
+
         Map gameState = new Map(_gameState);
+
+        List<Cell> Way = WayCalcSystem.CalcWay(gameState, figure.pos, endCell.pos, figure);
+
+        for (int i = 0; i < Way.Count; i++)
+        {
+            Way[i].numberPlayer = figure.Number;
+            Way[i].type = CellType.Paint;
+        }
+
+        Way[0].figure = null;
+        Way[Way.Count - 1].figure = figure;
+        figure.pos = endCell.pos;
+
+        UpdateGameState(gameState);
 
         return gameState;
     }
@@ -65,7 +81,9 @@ class GameStateCalcSystem
         {
             for (int j = cell.pos.Y - 1; j <= cell.pos.Y + 1; j++)
             {
-                if (Check.OutOfRange(cell.pos, map) == true ||
+                Position newPos = new Position(cell.pos.X + i, cell.pos.Y + j);
+
+                if (Check.OutOfRange(newPos, map) == true ||
                     map.GetCell(i, j).numberPlayer != cell.numberPlayer)
                 { return; }
             }
@@ -101,6 +119,7 @@ class GameStateCalcSystem
                 Cell cell = map.GetCell(i, j);
 
                 score[cell.numberPlayer][cell.type] += 1;
+
             }
         }
 
@@ -108,7 +127,7 @@ class GameStateCalcSystem
 
         List<int> scorePlayer = new List<int>();
 
-        for (int i = 0; i < score.Count; i++)
+        for (int i = -1; i < score.Count - 1; i++)
         {
             scorePlayer.Add(
                 score[i][CellType.Paint] * OneScorePaint +
@@ -119,6 +138,8 @@ class GameStateCalcSystem
     }
     private static Dictionary<int, Dictionary<CellType, int>> GetEmptyScoreDictionary(Map map)
     {
+        // Если номера игроков не будут начинаться с 0 и идти по порядку то тут всё сломается
+        // Надеюсь такого не будет а то мне лень исправлять
         Dictionary<int, Dictionary<CellType, int>> dict = new Dictionary<int, Dictionary<CellType, int>>();
 
         for (int i = -1; i < map.players.Count; i++)
