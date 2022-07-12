@@ -15,6 +15,8 @@ class QueenBuilder : FigureBuilder
                 [CellType.Empty] = true, // На пустые
             }
         };
+
+        figure.require = figRequire;
     }
 
     public override void SetFigType()

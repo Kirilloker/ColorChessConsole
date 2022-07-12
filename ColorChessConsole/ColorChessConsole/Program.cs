@@ -5,7 +5,7 @@ static void Main()
 {
 
     GameStateBuilder gameStateBuilder = new GameStateBuilder();
-    gameStateBuilder.SetDefaultAIGameState();
+    gameStateBuilder.SetDefaultOnlineGameState();
     Map map = gameStateBuilder.CreateGameState();
     Printer.PrintMap(map);
 //    Console.WriteLine("Hello World");

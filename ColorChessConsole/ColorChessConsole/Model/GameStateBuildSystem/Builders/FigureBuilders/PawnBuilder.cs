@@ -16,6 +16,8 @@ class PawnBuilder : FigureBuilder
                 [CellType.Paint] = true, // На чужие закрашенные
             }
         };
+
+        figure.require = figRequire;
     }
 
     public override void SetFigType()
