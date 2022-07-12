@@ -8,24 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\korya\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\tealvl\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Github\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole.csproj",
+      "projectUniqueName": "C:\\Git\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole.csproj",
       "projectName": "ColorChessConsole",
-      "projectPath": "D:\\Github\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole.csproj",
-      "packagesPath": "C:\\Users\\korya\\.nuget\\packages\\",
-      "outputPath": "D:\\Github\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole\\obj\\",
+      "projectPath": "C:\\Git\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole.csproj",
+      "packagesPath": "C:\\Users\\tealvl\\.nuget\\packages\\",
+      "outputPath": "C:\\Git\\ColorChessConsole\\ColorChessConsole\\ColorChessConsole\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\korya\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\tealvl\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -65,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
