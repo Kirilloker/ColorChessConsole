@@ -51,12 +51,6 @@ class GameStateCalcSystem
     }
 
 
-
-
-
-
-
-
     private static void CheckCapture(Map map)
     {
         // Делает квадраты захваченными
