@@ -10,7 +10,7 @@ class CastleAlgorithm : WayCalcStrategy
 
         for (int i = -3; i <= 3; i += 2)
         {
-            for (int j = 0; j < map.cells.GetLength(0); j++)
+            for (int j = 0; j < map.Width; j++)
             {
                 Position posCell = new Position(posFigure.X + j * (i % 2), posFigure.Y);
 

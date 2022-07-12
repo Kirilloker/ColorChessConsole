@@ -9,11 +9,11 @@ class HorseAlgorithm : WayCalcStrategy
 
         for (int i = (posFigure.X - 2); i <= posFigure.X + 2; i++)
         {
-            if (i < 0 || i > map.cells.GetLength(0) - 1) { continue; }
+            if (i < 0 || i > map.Width - 1) { continue; }
 
             for (int j = (posFigure.Y - 2); j <= posFigure.Y + 2; j++)
             {
-                if (j < 0 || j > map.cells.GetLength(1) - 1) { continue; }
+                if (j < 0 || j > map.Length - 1) { continue; }
 
                 if (((Math.Abs(i - posFigure.X) == 1) && (Math.Abs(j - posFigure.Y) == 2)) || 
                     ((Math.Abs(i - posFigure.X) == 2) && (Math.Abs(j - posFigure.Y) == 1)))

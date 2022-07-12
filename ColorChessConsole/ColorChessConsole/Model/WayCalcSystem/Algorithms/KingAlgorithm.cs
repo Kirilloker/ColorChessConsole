@@ -7,9 +7,9 @@ class KingAlgorithm : WayCalcStrategy
         List<Cell> avaibleCell = new List<Cell>();
         Position posFigure = figure.pos;
 
-        for (float i = 0; i < map.cells.GetLength(0); i++)
+        for (float i = 0; i < map.Width; i++)
         {
-            for (float j = 0; j < map.cells.GetLength(1); j++)
+            for (float j = 0; j < map.Length; j++)
             {
                 Position posCell = new Position(i, j);
 
