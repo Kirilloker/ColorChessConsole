@@ -25,15 +25,15 @@ public class Map
     }
 
     public int Width { get { return cells.GetLength(0); } }
-    public int Lenght { get { return cells.GetLength(1); } }
+    public int Length { get { return cells.GetLength(1); } }
 
     public Map(Map anotherMap)
     {
-        cells = new Cell[anotherMap.Width, anotherMap.Lenght];
+        cells = new Cell[anotherMap.Width, anotherMap.Length];
 
         for (int i = 0; i < anotherMap.Width; i++)
         {
-            for (int j = 0; j < anotherMap.Lenght; j++)
+            for (int j = 0; j < anotherMap.Length; j++)
             {
                 cells[i, j] = new Cell(anotherMap.cells[i, j]);
             }
@@ -53,9 +53,9 @@ public class Map
 
         Logs += "Cells:\n";
 
-        for (int i = 0; i < cells.GetLength(0); i++)
+        for (int i = 0; i < Width; i++)
         {
-            for (int j = 0; j < Lenght; j++)
+            for (int j = 0; j < Length; j++)
             {
                 Logs += cells[i, j].ToString() + "\n";
             }

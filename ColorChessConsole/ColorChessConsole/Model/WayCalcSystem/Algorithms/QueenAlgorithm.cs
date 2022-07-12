@@ -12,7 +12,7 @@ class QueenAlgorithm : WayCalcStrategy
         {
             if (Math.Abs(i) == 3)
             {
-                for (int j = 0; j < map.cells.GetLength(0); j++)
+                for (int j = 0; j < map.Width; j++)
                 {
                     Position posCell = new Position(posFigure.X + j * (i % 2), posFigure.Y + j * (i % 2));
 
@@ -29,7 +29,7 @@ class QueenAlgorithm : WayCalcStrategy
                     avaibleCell.Add(cell);
                 }
 
-                for (int j = 0; j < map.cells.GetLength(0); j++)
+                for (int j = 0; j < map.Width; j++)
                 {
                     Position posCell = new Position(posFigure.X + j * (i % 2), posFigure.Y);
 
@@ -48,7 +48,7 @@ class QueenAlgorithm : WayCalcStrategy
             }
             else
             {
-                for (int j = 0; j < map.cells.GetLength(1); j++)
+                for (int j = 0; j < map.Length; j++)
                 {
                     Position posCell = new Position(posFigure.X + j * (i % 2), posFigure.Y - j * (i % 2));
 
@@ -65,7 +65,7 @@ class QueenAlgorithm : WayCalcStrategy
                     avaibleCell.Add(cell);
                 }
 
-                for (int j = 0; j < map.cells.GetLength(1); j++)
+                for (int j = 0; j < map.Length; j++)
                 {
                     Position posCell = new Position(posFigure.X, posFigure.Y + j * (i % 2));
 
@@ -97,7 +97,7 @@ class QueenAlgorithm : WayCalcStrategy
 
             if (Math.Abs(i) == 3)
             {
-                for (int j = 0; j < map.cells.GetLength(0); j++)
+                for (int j = 0; j < map.Width; j++)
                 {
                     Position posCell = new Position(startPos.X + j * (i % 2), startPos.Y);
 
@@ -110,7 +110,7 @@ class QueenAlgorithm : WayCalcStrategy
 
                 way.Clear();
 
-                for (int j = 0; j < map.cells.GetLength(0); j++)
+                for (int j = 0; j < map.Width; j++)
                 {
                     Position posCell = new Position(startPos.X + j * (i % 2), startPos.Y + j * (i % 2));
 
@@ -123,7 +123,7 @@ class QueenAlgorithm : WayCalcStrategy
             }
             else
             {
-                for (int j = 0; j < map.cells.GetLength(1); j++)
+                for (int j = 0; j < map.Length; j++)
                 {
                     Position posCell = new Position(startPos.X, startPos.Y + j * (i % 2));
 
@@ -136,7 +136,7 @@ class QueenAlgorithm : WayCalcStrategy
 
                 way.Clear();
 
-                for (int j = 0; j < map.cells.GetLength(1); j++)
+                for (int j = 0; j < map.Length; j++)
                 {
                     Position posCell = new Position(startPos.X + j * (i % 2), startPos.Y - j * (i % 2));
 

@@ -6,18 +6,18 @@ public class Printer
     {
         string mapString = "   \t";
 
-        for (int i = 0; i < map.cells.GetLength(0); i++)
+        for (int i = 0; i < map.Width; i++)
         {
             mapString += i.ToString() + "  \t";
         }
 
         mapString += "\n";
 
-        for (int i = 0; i < map.cells.GetLength(0); i++)
+        for (int i = 0; i < map.Width; i++)
         {
             mapString += i.ToString() + "  \t";
 
-            for (int j = 0; j < map.cells.GetLength(1); j++)
+            for (int j = 0; j < map.Length; j++)
             {
                 mapString += GetStringCell(map.cells[i, j]) + "\t";
             }

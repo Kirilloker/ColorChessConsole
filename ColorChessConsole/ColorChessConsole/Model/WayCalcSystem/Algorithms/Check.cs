@@ -5,8 +5,8 @@ public static class Check
     {
         if (posCell.X < 0 ||
             posCell.Y < 0 ||
-            posCell.X > map.cells.GetLength(0) - 1 ||
-            posCell.Y > map.cells.GetLength(1) - 1)
+            posCell.X > map.Width - 1 ||
+            posCell.Y > map.Length - 1)
         { return true; }
 
         return false;

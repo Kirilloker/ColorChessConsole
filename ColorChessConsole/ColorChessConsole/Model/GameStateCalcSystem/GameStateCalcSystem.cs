@@ -45,9 +45,9 @@ class GameStateCalcSystem
     {
         // Делает квадраты захваченными
 
-        for (int i = 0; i < map.cells.GetLength(0); i++)
+        for (int i = 0; i < map.Width; i++)
         {
-            for (int j = 0; j < map.cells.GetLength(1); j++)
+            for (int j = 0; j < map.Length; j++)
             {
                 if (map.GetCell(i, j).type != CellType.Empty &
                     map.GetCell(i, j).numberPlayer != -1)
@@ -94,9 +94,9 @@ class GameStateCalcSystem
         // Словарь(Номер игрока, словарь(Тип клетки, количество таких клеток))
         Dictionary<int, Dictionary<CellType, int>> score = GetEmptyScoreDictionary(map);
 
-        for (int i = 0; i < map.cells.GetLength(0); i++)
+        for (int i = 0; i < map.Width; i++)
         {
-            for (int j = 0; j < map.cells.GetLength(1); j++)
+            for (int j = 0; j < map.Length; j++)
             {
                 Cell cell = map.GetCell(i, j);
 
