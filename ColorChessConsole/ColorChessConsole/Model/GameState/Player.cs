@@ -23,7 +23,7 @@ public class Player
 
         for (int i = 0; i < anotherPlayer.figures.Count; i++)
         {
-            this.figures.Add(new Figure(anotherPlayer.figures[i]));
+            this.figures.Add(new Figure(anotherPlayer.figures[i], this));
         }
     }
 
