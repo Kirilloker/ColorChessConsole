@@ -60,7 +60,7 @@ struct DefaultFigureSet
         new Position(2,1),//Пешка
         new Position(3,0),//Пешка
         new Position(0,2),//Ладья
-        new Position(0,1),//Королева
+        //new Position(0,1),//Королева
         new Position(1,1),//Конь
         new Position(1,0),//Король
         new Position(2,0),//Слон
@@ -73,7 +73,7 @@ struct DefaultFigureSet
             FigureType.Pawn,
             FigureType.Pawn,
             FigureType.Castle,
-            FigureType.Queen,
+            //FigureType.Queen,
             FigureType.Horse,
             FigureType.King,
             FigureType.Bishop

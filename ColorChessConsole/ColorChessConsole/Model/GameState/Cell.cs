@@ -43,14 +43,16 @@ public class Cell
     {
         // Может ли фигура наступить на такой тип клетки
 
-        // Если в словаре нет такого типа клетки, то сразу возвращаем False
-        if ((require[0].ContainsKey(type) || require[1].ContainsKey(type)) == false)
+        if (numberPlayerFigure == numberPlayer)
         {
-            return false;
+            if (require[0].ContainsKey(type) == true) { return require[0][type]; }
+            else { return false; }
         }
-
-        if (numberPlayer == numberPlayerFigure) return require[0][type];
-        else return require[1][type];
+        else
+        {
+            if (require[1].ContainsKey(type) == true) { return require[1][type]; }
+            else { return false; }
+        }
     }
 
 
@@ -67,7 +69,7 @@ public class Cell
 
         Logs += "Number Player: " + numberPlayer.ToString() + "\n";
 
-        Logs += "Figure: " + Types.ToString(figure.type) + "\n";
+        Logs += "Figure: " + Types.ToString(FigureType) + "\n";
 
         return Logs;
     }

@@ -1,4 +1,6 @@
-﻿namespace ColorChessConsole;
+﻿using ColorChessConsole.PRINTER;
+
+namespace ColorChessConsole;
 
 static public class Test
 {
@@ -30,6 +32,7 @@ public class TestAI
 		List<List<Cell>> avaible = new List<List<Cell>>();
 		int MaxMinEvaluation = 0;
 		Cell bestCell = new Cell(new Position(-1,-1));
+		Figure bestFigure = new Figure();
 
 		//int statusGame = 0;
 		//if (statusGame == 1) { return 10000;  }
@@ -56,6 +59,13 @@ public class TestAI
 					if (MaxMinEvaluation > beta) break;
 					if (beta < alpha) break;
 
+
+					if (avaible[i][j].pos.X == 3 && avaible[i][j].pos.Y == 1 && map.players[1].figures[i].type == FigureType.Bishop && map.players[1].figures[i].pos.X == 1 && map.players[1].figures[i].pos.Y == 1)
+					{
+						Printer.PrintMap(map);
+						Console.WriteLine("asd");
+					}
+
 					Map copyMap = GameStateCalcSystem.ApplyStep(map, map.players[1].figures[i], avaible[i][j]);
 
 					int MinMax = AlphaBeta(copyMap, level + 1, alpha, beta);
@@ -66,6 +76,7 @@ public class TestAI
 					if (level == 0 && MinMax > MaxMinEvaluation)
 					{
 						bestCell = avaible[i][j];
+						bestFigure = map.players[1].figures[i];
 					}
 
 					MaxMinEvaluation = Math.Max(MaxMinEvaluation, MinMax);
@@ -87,6 +98,12 @@ public class TestAI
 					if (MaxMinEvaluation < alpha) break;
 					if (beta < alpha) break;
 
+					if (avaible[i][j].pos.X == 3 && avaible[i][j].pos.Y == 1 && map.players[0].figures[i].type == FigureType.Bishop && map.players[0].figures[i].pos.X == 1 && map.players[0].figures[i].pos.Y == 1)
+					{
+						Printer.PrintMap(map);
+						Console.WriteLine("asd");
+					}
+
 					Map copyMap = GameStateCalcSystem.ApplyStep(map, map.players[0].figures[i], avaible[i][j]);
 
 					int MinMax = AlphaBeta(copyMap, level + 1, alpha, beta);
@@ -102,7 +119,8 @@ public class TestAI
 
 		if (level == 0)
         {
-            Console.WriteLine("Самый лучший ход:", bestCell.pos);
+            Console.WriteLine("Самый лучший ход:" + bestCell);
+            Console.WriteLine("Figure:" + bestFigure);
         }
 
 
