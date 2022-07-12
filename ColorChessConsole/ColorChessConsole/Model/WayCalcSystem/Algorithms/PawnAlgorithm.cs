@@ -14,10 +14,12 @@ class PawnAlgorithm : WayCalcStrategy
             {
                 Position posCell = new Position(i, j);
 
-                if ((Check.OutOfRange(posCell, map) ||
+                if ((Check.OutOfRange(posCell, map) == true ||
                     Check.SelfPoint(posCell, posFigure)) == true) { continue; }
 
                 Cell cell = map.GetCell(posCell);
+
+                if (Check.BusyCell(cell) == true) { continue; }
 
                 // Чтобы не съесть свою фигуру
                 if (cell.numberPlayer == figure.Number &&

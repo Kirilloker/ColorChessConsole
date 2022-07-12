@@ -15,9 +15,6 @@ static public class Test
 			avaiblePlayer.Add(WayCalcSystem.CalcAllSteps(map, figure));
 		}
 
-        
-
-
 		return avaiblePlayer;
     }
 
@@ -63,6 +60,7 @@ public class TestAI
 
 					Map copyMap = GameStateCalcSystem.ApplyStep(map, map.players[1].figures[i], avaible[i][j]);
 
+
 					int MinMax = AlphaBeta(copyMap, level + 1, alpha, beta);
 
 					if (level == 0 && MinMax > MaxMinEvaluation)
@@ -90,7 +88,6 @@ public class TestAI
 					if (MaxMinEvaluation < alpha) break;
 					if (beta < alpha) break;
 
-
 					Map copyMap = GameStateCalcSystem.ApplyStep(map, map.players[0].figures[i], avaible[i][j]);
 
 					int MinMax = AlphaBeta(copyMap, level + 1, alpha, beta);
@@ -105,16 +102,21 @@ public class TestAI
         {
             Console.WriteLine("Самый лучший ход:" + bestCell);
             Console.WriteLine("Figure:" + bestFigure);
-        }
+			bestCell1 = bestCell;
+			bestFigure1 = bestFigure; 
+		}
 
 
 		return MaxMinEvaluation;
 	}
 
+	public static Cell bestCell1 = null;
+	public static Figure bestFigure1 = null;
+
 
 	public static int evaluation_function(Map map) 
 	{
-		return map.scorePlayer[0] + map.scorePlayer[1]; 
+		return map.scorePlayer[0] - map.scorePlayer[1]; 
 	}
 }
 

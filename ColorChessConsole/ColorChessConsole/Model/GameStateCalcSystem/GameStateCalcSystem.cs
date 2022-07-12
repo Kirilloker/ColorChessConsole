@@ -37,6 +37,14 @@ class GameStateCalcSystem
         Way[Way.Count - 1].figure = newFigure;
         newFigure.pos = new Position(endCell.pos);
 
+        for (int i = 0; i < Way.Count; i++)
+        {
+            if(Way[i].numberPlayer != newFigure.Number)
+            {
+                Console.WriteLine("");
+            }
+        }
+
         UpdateGameState(gameState);
 
         return gameState;

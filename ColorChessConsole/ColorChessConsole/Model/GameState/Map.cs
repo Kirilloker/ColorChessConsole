@@ -61,16 +61,6 @@ public class Map
             }
         }
 
-        foreach (Player player in this.players)
-        {
-            foreach (Figure figure in player.figures)
-            {
-                if (this.cells[figure.pos.X, figure.pos.Y].FigureType == FigureType.Empty)
-                {
-                    Console.WriteLine("");
-                }
-            }
-        }
     }
 
     public override string ToString()
