@@ -43,6 +43,6 @@ class FigureBuilderDirector
         builder.SetPosition(pos);
         builder.SetPlayer(player);
 
-        return new Figure(builder.GetResult()); 
+        return new Figure(builder.GetResult(), player); 
     }
 }

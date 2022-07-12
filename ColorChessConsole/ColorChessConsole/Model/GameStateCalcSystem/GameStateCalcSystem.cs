@@ -15,17 +15,27 @@ class GameStateCalcSystem
 
         Map gameState = new Map(_gameState);
 
-        List<Cell> Way = WayCalcSystem.CalcWay(gameState, figure.pos, endCell.pos, figure);
+        // Получаем ссылку на новую фигуру, которая делает ход
+        Figure newFigure = gameState.GetCell(figure.pos).figure;
+
+        if (endCell.pos.X == 0 && endCell.pos.Y == 3 && figure.type == FigureType.Bishop && figure.pos.X == 1 && figure.pos.Y == 3)
+        {
+            Console.WriteLine("asd");
+        }
+
+        List<Cell> Way = WayCalcSystem.CalcWay(gameState, newFigure.pos, endCell.pos, newFigure);
+
+
 
         for (int i = 0; i < Way.Count; i++)
         {
-            Way[i].numberPlayer = figure.Number;
+            Way[i].numberPlayer = newFigure.Number;
             Way[i].type = CellType.Paint;
         }
 
         Way[0].figure = null;
-        Way[Way.Count - 1].figure = figure;
-        figure.pos = endCell.pos;
+        Way[Way.Count - 1].figure = newFigure;
+        newFigure.pos = new Position(endCell.pos);
 
         UpdateGameState(gameState);
 

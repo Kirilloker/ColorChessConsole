@@ -6,6 +6,8 @@ public class Map
     public List<Player> players = new List<Player>();
     public List<int> scorePlayer = new List<int>();
 
+    // Добавить пустые клетки
+
     public Map() { }
     public Map(int x, int y) 
     {
@@ -33,6 +35,13 @@ public class Map
 
     public Map(Map anotherMap)
     {
+        this.players = new List<Player>();
+
+        for (int i = 0; i < anotherMap.players.Count; i++)
+        {
+            this.players.Add(new Player(anotherMap.players[i]));
+        }
+
         cells = new Cell[anotherMap.Width, anotherMap.Length];
 
         for (int i = 0; i < anotherMap.Width; i++)
@@ -43,11 +52,24 @@ public class Map
             }
         }
 
-        this.players = new List<Player>();
-
-        for (int i = 0; i < anotherMap.players.Count; i++)
+        foreach (Player player in this.players)
         {
-            this.players.Add(new Player(anotherMap.players[i]));
+            foreach (Figure figure in player.figures)
+            {
+                this.cells[figure.pos.X, figure.pos.Y].figure = figure;
+                //GetCell(figure.pos).figure = figure;
+            }
+        }
+
+        foreach (Player player in this.players)
+        {
+            foreach (Figure figure in player.figures)
+            {
+                if (this.cells[figure.pos.X, figure.pos.Y].FigureType == FigureType.Empty)
+                {
+                    Console.WriteLine("");
+                }
+            }
         }
     }
 

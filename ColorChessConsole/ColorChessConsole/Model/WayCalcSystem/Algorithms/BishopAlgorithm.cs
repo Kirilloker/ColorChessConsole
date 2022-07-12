@@ -28,11 +28,27 @@ class BishopAlgorithm : WayCalcStrategy
 
         }
 
+        if (figure.pos.X == 1 && figure.pos.Y == 3)
+        {
+            for (int i = 0; i < avaibleCell.Count; i++)
+            {
+                if (avaibleCell[i].pos.X == 0 && avaibleCell[i].pos.Y == 3)
+                {
+                    Console.WriteLine("asd");
+                }
+            }
+        }
+
         return avaibleCell;
     }
 
     public List<Cell> Way(Map map, Position startPos, Position endPos, Figure figure)
     {
+        if (figure.pos.X == 1 && figure.pos.Y == 3 && endPos.X == 0 && endPos.Y == 3)
+        {
+            Console.WriteLine("");
+        }
+
         List<Cell> way = new List<Cell>();
 
         for (int i = -3; i <= 3; i += 2)
@@ -50,6 +66,8 @@ class BishopAlgorithm : WayCalcStrategy
                 if (posCell == endPos) { return way; }
             }
         }
+
+
 
         return new List<Cell>();
     }

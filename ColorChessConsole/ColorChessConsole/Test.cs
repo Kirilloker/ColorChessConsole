@@ -15,6 +15,8 @@ static public class Test
 			avaiblePlayer.Add(WayCalcSystem.CalcAllSteps(map, figure));
 		}
 
+        
+
 
 		return avaiblePlayer;
     }
@@ -28,7 +30,6 @@ public class TestAI
 	static int MAX_LEVEL = 4;
 	public static int AlphaBeta(Map map, int level, int alpha, int beta)
     {
-        Console.WriteLine(level);
 		List<List<Cell>> avaible = new List<List<Cell>>();
 		int MaxMinEvaluation = 0;
 		Cell bestCell = new Cell(new Position(-1,-1));
@@ -60,18 +61,9 @@ public class TestAI
 					if (beta < alpha) break;
 
 
-					if (avaible[i][j].pos.X == 3 && avaible[i][j].pos.Y == 1 && map.players[1].figures[i].type == FigureType.Bishop && map.players[1].figures[i].pos.X == 1 && map.players[1].figures[i].pos.Y == 1)
-					{
-						Printer.PrintMap(map);
-						Console.WriteLine("asd");
-					}
-
 					Map copyMap = GameStateCalcSystem.ApplyStep(map, map.players[1].figures[i], avaible[i][j]);
 
 					int MinMax = AlphaBeta(copyMap, level + 1, alpha, beta);
-
-                    Console.WriteLine("MinMax: " + MinMax);
-                    Console.WriteLine("MaxMinEvaluation: " + MaxMinEvaluation);
 
 					if (level == 0 && MinMax > MaxMinEvaluation)
 					{
@@ -98,18 +90,10 @@ public class TestAI
 					if (MaxMinEvaluation < alpha) break;
 					if (beta < alpha) break;
 
-					if (avaible[i][j].pos.X == 3 && avaible[i][j].pos.Y == 1 && map.players[0].figures[i].type == FigureType.Bishop && map.players[0].figures[i].pos.X == 1 && map.players[0].figures[i].pos.Y == 1)
-					{
-						Printer.PrintMap(map);
-						Console.WriteLine("asd");
-					}
 
 					Map copyMap = GameStateCalcSystem.ApplyStep(map, map.players[0].figures[i], avaible[i][j]);
 
 					int MinMax = AlphaBeta(copyMap, level + 1, alpha, beta);
-
-					Console.WriteLine("MinMax: " + MinMax);
-					Console.WriteLine("MaxMinEvaluation: " + MaxMinEvaluation);
 
 					MaxMinEvaluation = Math.Min(MaxMinEvaluation, MinMax);
 					beta = Math.Min(alpha, MaxMinEvaluation);

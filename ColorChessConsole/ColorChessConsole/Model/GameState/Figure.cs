@@ -10,11 +10,11 @@ public class Figure
 
     public Figure() { }
 
-    public Figure(Figure anotherFigure)
+    public Figure(Figure anotherFigure, Player newPlayer)
     {
         this.pos = new Position(anotherFigure.pos);
         this.type = anotherFigure.type;
-        this.player = anotherFigure.player;
+        this.player = newPlayer;
         this.require = anotherFigure.require;
         //FigureView?
     }

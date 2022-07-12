@@ -22,7 +22,7 @@ public class Cell
     {
         this.pos = new Position(anotherCell.pos);
         this.type = anotherCell.type;
-        this.figure = anotherCell.figure;
+        this.figure = null;
         this.numberPlayer = anotherCell.numberPlayer;
     }
 
