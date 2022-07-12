@@ -1,4 +1,10 @@
-﻿namespace ColorChessConsole;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ColorChessConsole;
 
 class GameStateBuilder
 {
@@ -65,10 +71,120 @@ class GameStateBuilder
         return gameState;
     }
 
-    public void SetStandartBoard()
+    public void SetCustomGameState(PlayersDiscription _playersDiscription, CellDiscription _board, List<FigureSetDiscription>? _figureSets)
     {
-   
+        playersDiscription = _playersDiscription;
+        board = _board;
+        figureSets = _figureSets;   
     }
 
-    
-}
+    private void SetDefaultBoard()
+    {
+        board = new CellDiscription();
+        board.lenght = 9;
+        board.width = 9;
+        board.CellTypes = new CellType[board.lenght, board.width];
+
+        for (int i = 0; i < board.lenght; i++)
+        {
+            for (int j = 0; j < board.width; j++)
+            {
+                board.CellTypes[i, j] = CellType.Empty;
+            }
+        }
+    }
+
+    private FigureSetDiscription ConvertFigurePosToCorner(FigureSetDiscription figureSet, CornerType corner)
+    {
+        for (int i = 0; i < figureSet.positions.Count; i++)
+        {
+            switch (corner)
+            {
+                case CornerType.UpLeft:
+                    figureSet.positions[i].Y = board.lenght - 1 - figureSet.positions[i].Y;
+                    break;
+                case CornerType.UpRight:
+                    figureSet.positions[i].X = board.lenght - 1 - figureSet.positions[i].X;
+                    figureSet.positions[i].Y = board.lenght - 1 - figureSet.positions[i].Y;
+                    break;
+                case CornerType.DownLeft:
+                    //Считаем стандратным, зеркалим относително него
+                    break;
+                case CornerType.DownRight:
+                    figureSet.positions[i].X = board.lenght - 1 - figureSet.positions[i].X;
+                    break;
+                default:
+                    break;
+            }
+        }
+        return figureSet;
+    }
+
+    private void SetDefaultFigureSets()
+    {
+        figureSets = new List<FigureSetDiscription>();
+
+        for (int i = 0; i < playersDiscription.PlayerNumbers.Count; i++)
+        {
+            DefaultFigureSet defaultFigSet = new DefaultFigureSet();
+            figureSets.Add(
+                ConvertFigurePosToCorner(
+                    new FigureSetDiscription(defaultFigSet.positions, defaultFigSet.figureTypes),
+                    playersDiscription.PlayerCorners[i]));
+        }
+    }
+
+    public void SetDefaultHotSeatGameState()
+    {
+        playersDiscription = new PlayersDiscription();
+        
+        playersDiscription.PlayerNumbers.Add(0);
+        playersDiscription.PlayerTypes.Add(PlayerType.Human);
+        playersDiscription.PlayerCorners.Add(CornerType.DownLeft);
+        playersDiscription.PlayerColors.Add(ColorType.Blue);
+
+        playersDiscription.PlayerNumbers.Add(1);
+        playersDiscription.PlayerTypes.Add(PlayerType.Human);
+        playersDiscription.PlayerCorners.Add(CornerType.UpRight);
+        playersDiscription.PlayerColors.Add(ColorType.Red);
+
+        SetDefaultBoard();
+        SetDefaultFigureSets();
+    }
+
+    public void SetDefaultAIGameState()
+    {
+        playersDiscription = new PlayersDiscription();
+
+        playersDiscription.PlayerNumbers.Add(0);
+        playersDiscription.PlayerTypes.Add(PlayerType.Human);
+        playersDiscription.PlayerCorners.Add(CornerType.DownLeft);
+        playersDiscription.PlayerColors.Add(ColorType.Blue);
+
+        playersDiscription.PlayerNumbers.Add(1);
+        playersDiscription.PlayerTypes.Add(PlayerType.AI);
+        playersDiscription.PlayerCorners.Add(CornerType.UpRight);
+        playersDiscription.PlayerColors.Add(ColorType.Red);
+
+        SetDefaultBoard();
+        SetDefaultFigureSets();
+    }
+
+    public void SetDefaultOnlineGameState()
+    {
+        playersDiscription = new PlayersDiscription();
+
+        playersDiscription.PlayerNumbers.Add(0);
+        playersDiscription.PlayerTypes.Add(PlayerType.Human);
+        playersDiscription.PlayerCorners.Add(CornerType.DownLeft);
+        playersDiscription.PlayerColors.Add(ColorType.Blue);
+
+        playersDiscription.PlayerNumbers.Add(1);
+        playersDiscription.PlayerTypes.Add(PlayerType.Online);
+        playersDiscription.PlayerCorners.Add(CornerType.UpRight);
+        playersDiscription.PlayerColors.Add(ColorType.Red);
+
+        SetDefaultBoard();
+        SetDefaultFigureSets();
+    }
+};
