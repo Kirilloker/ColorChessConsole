@@ -7,6 +7,10 @@ public class Map
     public List<int> scorePlayer = new List<int>();
 
     public Map() { }
+    public Map(int x, int y) 
+    {
+        cells = new Cell[x, y];
+    }
 
     public Map(Cell[,] _cells, List<Player> _players)
     {

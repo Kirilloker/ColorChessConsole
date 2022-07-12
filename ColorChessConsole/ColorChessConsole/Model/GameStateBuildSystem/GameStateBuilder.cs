@@ -31,7 +31,7 @@ class GameStateBuilder
     public Map CreateGameState()
     {
         //Создаем игроков
-        for(int i = 0; i < playersDiscription.PlayerNumbers.Count; i++)
+        for (int i = 0; i < playersDiscription.PlayerNumbers.Count; i++)
         {
             gameState.players.Add(playerBuilder.MakePlayer(
                 playersDiscription.PlayerCorners[i],
@@ -52,6 +52,9 @@ class GameStateBuilder
                         figureSets[i].figureTypes[j]));
             }
         }
+
+        // Выделяем память под массив
+        gameState.cells = new Cell[board.lenght, board.width];
 
         //Создаем игровое поле
         for (int i = 0; i < board.lenght; i++)

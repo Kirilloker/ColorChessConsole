@@ -15,7 +15,8 @@ class PlayerBuilder
         player.corner = corner;
         player.color = color;
         player.type = type;
-        return player;
+
+        return new Player(player);
     }
 }
 

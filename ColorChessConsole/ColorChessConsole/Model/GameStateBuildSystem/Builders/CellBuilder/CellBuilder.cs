@@ -13,6 +13,6 @@
         cell.type = cellType;
         cell.figure = null;
         cell.numberPlayer = -1;
-        return cell;
+        return new Cell(cell);
     }
  }
