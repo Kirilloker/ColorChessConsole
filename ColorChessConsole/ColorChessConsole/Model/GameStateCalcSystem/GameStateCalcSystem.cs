@@ -47,6 +47,8 @@ class GameStateCalcSystem
 
         UpdateGameState(gameState);
 
+        gameState.countStep++;
+
         return gameState;
     }
 

@@ -5,6 +5,7 @@ public class Map
     public Cell[,] cells = null;
     public List<Player> players = new List<Player>();
     public List<int> scorePlayer = new List<int>();
+    public int countStep = 0;
 
     // Добавить пустые клетки
 
@@ -32,6 +33,7 @@ public class Map
 
     public int Width { get { return cells.GetLength(0); } }
     public int Length { get { return cells.GetLength(1); } }
+    public int numberPlayerStep { get { return (countStep - 1) % players.Count; } }
 
     public Map(Map anotherMap)
     {
@@ -57,10 +59,10 @@ public class Map
             foreach (Figure figure in player.figures)
             {
                 this.cells[figure.pos.X, figure.pos.Y].figure = figure;
-                //GetCell(figure.pos).figure = figure;
             }
         }
 
+        this.countStep = anotherMap.countStep;
     }
 
     public override string ToString()

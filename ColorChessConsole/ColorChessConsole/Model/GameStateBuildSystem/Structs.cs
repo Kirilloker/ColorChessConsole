@@ -55,28 +55,30 @@ struct DefaultFigureSet
     {
         positions = new List<Position>()
         {
-        new Position(0,3),//Пешка
-        new Position(1,2),//Пешка
-        new Position(2,1),//Пешка
-        new Position(3,0),//Пешка
+        //new Position(0,3),//Пешка
+        //new Position(1,2),//Пешка
+        //new Position(2,1),//Пешка
+        //new Position(3,0),//Пешка
         new Position(0,2),//Ладья
+        new Position(2,0),//Ладья
         //new Position(0,1),//Королева
-        new Position(1,1),//Конь
-        new Position(1,0),//Король
-        new Position(2,0),//Слон
+        //new Position(1,1),//Конь
+        //new Position(1,0),//Король
+        //new Position(2,0),//Слон
         };
 
         figureTypes = new List<FigureType>()
         {
-            FigureType.Pawn,
-            FigureType.Pawn,
-            FigureType.Pawn,
-            FigureType.Pawn,
+            //FigureType.Pawn,
+            //FigureType.Pawn,
+            //FigureType.Pawn,
+            //FigureType.Pawn,
+            FigureType.Castle,
             FigureType.Castle,
             //FigureType.Queen,
-            FigureType.Horse,
-            FigureType.King,
-            FigureType.Bishop
+            //FigureType.Horse,
+            //FigureType.King,
+            //FigureType.Bishop
         };
     }   
 }
