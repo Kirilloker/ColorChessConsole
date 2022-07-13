@@ -64,9 +64,6 @@ static void Main()
         map = GameStateCalcSystem.ApplyStep(map, map.GetCell(posStart).figure, map.GetCell(posEnd));
 
         TestAI.AlphaBeta(map, 0, int.MinValue, int.MaxValue);
-
-        
-
         map = GameStateCalcSystem.ApplyStep(map, TestAI.bestFigure1, TestAI.bestCell1);
     }
 }

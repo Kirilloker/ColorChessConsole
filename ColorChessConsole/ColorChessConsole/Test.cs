@@ -116,7 +116,7 @@ public class TestAI
 
 	public static int evaluation_function(Map map) 
 	{
-		return map.scorePlayer[0] - map.scorePlayer[1]; 
+		return - map.scorePlayer[0] + map.scorePlayer[1]; 
 	}
 }
 

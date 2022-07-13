@@ -7,6 +7,7 @@ class BishopAlgorithm : WayCalcStrategy
 
         Position posFigure = figure.pos;
 
+        Dictionary<Cell, int> dict = new Dictionary<Cell, int>();
 
         for (int i = -3; i <= 3; i += 2)
         {
@@ -23,10 +24,23 @@ class BishopAlgorithm : WayCalcStrategy
                     ||
                     Check.Avaible(posCell, figure, map) == false) { break; }
 
-                avaibleCell.Add(cell);
+                //avaibleCell.Add(cell);
+
+                // Добавляем клетку и расстояние от фигуры до клетки 
+                dict.Add(cell, Math.Abs(figure.pos.X - cell.pos.X) + Math.Abs(figure.pos.Y - cell.pos.Y));
             }
 
         }
+
+        // Сортируем словарь и добовляем всё в массив
+        dict = dict.OrderBy(pair => pair.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
+
+        foreach (Cell cell in dict.Keys)
+        {
+            avaibleCell.Add(cell);
+        }
+
+        avaibleCell.Reverse();
 
         return avaibleCell;
     }

@@ -6,6 +6,7 @@ public class Map
     public List<Player> players = new List<Player>();
     public List<int> scorePlayer = new List<int>();
     public int countStep = 0;
+    public int countEmptyCell = 0;
 
     // Добавить пустые клетки
 
@@ -63,6 +64,7 @@ public class Map
         }
 
         this.countStep = anotherMap.countStep;
+        this.countEmptyCell = anotherMap.countEmptyCell;
     }
 
     public override string ToString()

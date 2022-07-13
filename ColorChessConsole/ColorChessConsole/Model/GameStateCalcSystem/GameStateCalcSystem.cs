@@ -1,64 +1,56 @@
 ﻿namespace ColorChessConsole;
 class GameStateCalcSystem
 {
-    public static Map UpdateGameState(Map gameState)
+    public static Map UpdateGameState(Map map)
     {
-        CheckCapture(gameState);
-        gameState.scorePlayer = CalculateScore(gameState);
+        CheckCapture(map);
+        // Внутри этой функции заполняется поле countEmptyCell в gamestate
+        map.scorePlayer = CalculateScore(map);
 
-        return gameState;
+        return map;
     }
 
-    public static Map ApplyStep(Map _gameState, Figure figure, Cell endCell)
+    public static Map ApplyStep(Map _map, Figure figure, Cell endCell)
     {
         // В игре это работать не будет, но нужно для тестов
 
-        Map gameState = new Map(_gameState);
+        Map map = new Map(_map);
 
         // Получаем ссылку на новую фигуру, которая делает ход
-        Figure newFigure = gameState.GetCell(figure.pos).figure;
+        Figure newFigure = map.GetCell(figure.pos).figure;
 
-        if (endCell.pos.X == 0 && endCell.pos.Y == 3 && figure.type == FigureType.Bishop && figure.pos.X == 1 && figure.pos.Y == 3)
-        {
-            Console.WriteLine("asd");
-        }
+        List<Cell> Way = WayCalcSystem.CalcWay(map, newFigure.pos, endCell.pos, newFigure);
 
-        List<Cell> Way = WayCalcSystem.CalcWay(gameState, newFigure.pos, endCell.pos, newFigure);
-
-
-
+        // В клетках, по которым проходит путь фигур меняем номер игрока и перекрашивает в Paint
         for (int i = 0; i < Way.Count; i++)
         {
             Way[i].numberPlayer = newFigure.Number;
             Way[i].type = CellType.Paint;
         }
 
+        // На клетке где изначально стояла фигура убираем ссылку на фигуру
         Way[0].figure = null;
+        // В конечной клетке присваиваем ссылку на фигуру
         Way[Way.Count - 1].figure = newFigure;
+        // В фигуре которая сходила меняем её позицию
         newFigure.pos = new Position(endCell.pos);
+        
+        // Обновляем карту
+        UpdateGameState(map);
 
-        for (int i = 0; i < Way.Count; i++)
-        {
-            if(Way[i].numberPlayer != newFigure.Number)
-            {
-                Console.WriteLine("");
-            }
-        }
+        // Увеличиваем количество ходов
+        map.countStep++;
 
-        UpdateGameState(gameState);
-
-        gameState.countStep++;
-
-        return gameState;
+        return map;
     }
 
-    public static Map UpdateGameStateForBuilder(Map gameState)
+    public static Map UpdateGameStateForBuilder(Map map)
     {
-        foreach (Player player in gameState.players)
+        foreach (Player player in map.players)
         {
             foreach (Figure figure in player.figures)
             {
-                Cell cell = gameState.GetCell(figure.pos);
+                Cell cell = map.GetCell(figure.pos);
 
                 cell.figure = figure;
                 cell.numberPlayer = figure.Number;
@@ -67,7 +59,7 @@ class GameStateCalcSystem
             }
         }
 
-        return gameState;
+        return map;
     }
 
 
@@ -137,7 +129,9 @@ class GameStateCalcSystem
             }
         }
 
+        // Заполняем поле количество пустых клеток
         if (score[-1][CellType.Empty] == 0) { DebugConsole.Print("Белые клетки закончились"); }
+        map.countEmptyCell = score[-1][CellType.Empty];
 
         List<int> scorePlayer = new List<int>();
 
