@@ -1,5 +1,6 @@
 ﻿using ColorChessConsole;
 using ColorChessConsole.PRINTER;
+using System.Collections;
 
 static void Main()
 {
@@ -12,8 +13,19 @@ static void Main()
     int xEnd;
     int yEnd;
 
+    //Dictionary<uint, int> TestHashTable = new Dictionary<uint, int>();
+    Hashtable hashtable = new Hashtable();
+
     while (true)
     {
+        //Console.WriteLine(TestHashTable.ContainsKey(map.GetHash()));
+        //TestHashTable.Add(map.GetHash(), 1);
+
+        Console.WriteLine(hashtable.ContainsKey(map.GetHash()));
+        hashtable.Add(map.GetHash(), 1);
+
+
+        
         Printer.PrintMap(map);
 
         Console.Write("x Start: ");
@@ -63,8 +75,9 @@ static void Main()
 
         map = GameStateCalcSystem.ApplyStep(map, map.GetCell(posStart).figure, map.GetCell(posEnd));
 
-        TestAI.AlphaBeta(map, 0, int.MinValue, int.MaxValue);
-        map = GameStateCalcSystem.ApplyStep(map, TestAI.bestFigure1, TestAI.bestCell1);
+
+        //TestAI.AlphaBeta(map, 0, int.MinValue, int.MaxValue);
+        //map = GameStateCalcSystem.ApplyStep(map, TestAI.bestFigure1, TestAI.bestCell1);
     }
 }
 

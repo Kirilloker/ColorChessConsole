@@ -90,4 +90,9 @@ public class Map
 
         return Logs;
     }
+
+    public uint GetHash()
+    {
+        return 15;
+    }
 }
