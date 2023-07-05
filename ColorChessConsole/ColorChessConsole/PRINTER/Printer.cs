@@ -7,35 +7,34 @@ public class Printer
 {
     public static void PrintMap(Map map)
     {
-        string mapString = "   \t";
+        Console.Clear();
+        Console.WriteLine("   \t" + string.Join("\t", Enumerable.Range(0, map.Width)));
 
         for (int i = 0; i < map.Width; i++)
         {
-            mapString += i.ToString() + "  \t";
-        }
-
-        mapString += "\n";
-
-        for (int i = 0; i < map.Width; i++)
-        {
-            mapString += i.ToString() + "  \t";
+            Console.Write(i + "  \t");
 
             for (int j = 0; j < map.Length; j++)
             {
-                mapString += GetStringCell(map.Cells[i, j]) + "\t";
+                PrintCell(map.Cells[i, j]);
+                Console.Write("\t");
             }
 
-            mapString += "\n\n";
+            Console.WriteLine("\n");
         }
+    }
 
-        Console.WriteLine(mapString);
+    public static void PrintCell(Cell cell)
+    {
+        Console.ForegroundColor = GetCellForegroundColor(cell);
+        Console.BackgroundColor = GetCellBackgroundColor(cell);
+        Console.Write(GetStringCell(cell));
+        Console.ResetColor();
     }
 
     public static string GetStringCell(Cell cell)
     {
-        string str = "";
-
-        str += cell.numberPlayer;
+        string str = cell.numberPlayer.ToString();
 
         switch (cell.type)
         {
@@ -83,12 +82,52 @@ public class Printer
                 str += "!";
                 break;
         }
-        
-
-
-
-
 
         return str;
+    }
+
+    public static ConsoleColor GetCellForegroundColor(Cell cell)
+    {
+        switch (cell.FigureType)
+        {
+            case FigureType.Empty:
+                return ConsoleColor.White;
+            case FigureType.Pawn:
+                return ConsoleColor.Cyan;
+            case FigureType.King:
+                return ConsoleColor.Magenta;
+            case FigureType.Bishop:
+                return ConsoleColor.Yellow;
+            case FigureType.Castle:
+                return ConsoleColor.Blue;
+            case FigureType.Horse:
+                return ConsoleColor.Gray;
+            case FigureType.Queen:
+                return ConsoleColor.DarkMagenta;
+            default:
+                return ConsoleColor.Yellow;
+        }
+    }
+
+    public static ConsoleColor GetCellBackgroundColor(Cell cell)
+    {
+        int numberPlayer = cell.numberPlayer;
+        switch (cell.type)
+        {
+            case CellType.Empty:
+                return ConsoleColor.Black;
+            case CellType.Paint:
+                if (numberPlayer == 0)
+                    return ConsoleColor.Green;
+                else return ConsoleColor.Red;
+            case CellType.Dark:
+                if (numberPlayer == 0)
+                    return ConsoleColor.Yellow;
+                else return ConsoleColor.Blue;
+            case CellType.Block:
+                return ConsoleColor.Red;
+            default:
+                return ConsoleColor.Black;
+        }
     }
 }

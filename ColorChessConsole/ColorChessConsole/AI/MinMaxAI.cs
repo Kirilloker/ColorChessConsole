@@ -10,7 +10,7 @@ using System.Diagnostics;
 public class MinMaxAI : IAI
 {
     // Глубина дерева
-    int MAX_LEVEL = 4;
+    int MAX_LEVEL =4;
 
     // Лучший ход
     public Cell bestCell = null;
@@ -124,10 +124,10 @@ public class MinMaxAI : IAI
 
             if (map.GetScorePlayer(myNumber) > total)
                 // Если победил AI
-                return 10000;
+                return int.MaxValue;
             else
                 // Если победил человек
-                return -10000;
+                return int.MinValue;
         }
 
         // Устанавливается стадия игры

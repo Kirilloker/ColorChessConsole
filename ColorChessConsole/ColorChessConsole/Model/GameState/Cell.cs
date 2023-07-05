@@ -78,5 +78,6 @@ namespace ColorChessConsole.Model.GameState
                    numberPlayer == cell.numberPlayer &&
                    FigureType == cell.FigureType;
         }
+
     }
 }

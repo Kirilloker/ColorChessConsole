@@ -31,6 +31,19 @@ namespace ColorChessConsole.Model.GameState
             Y = anotherPosition.Y;
         }
 
+
+        public static Position ReadFromConsole()
+        {
+            Console.Write("Введите координаты позиции (X Y): ");
+            string input = Console.ReadLine();
+            string[] coordinates = input.Split(' ');
+
+            if (coordinates.Length != 2 || !int.TryParse(coordinates[0], out int x) || !int.TryParse(coordinates[1], out int y))
+                throw new FormatException("Некорректный ввод координат позиции.");
+
+            return new Position { X = x, Y = y };
+        }
+
         public static bool operator !=(Position pos1, Position pos2)
         {
             return !(pos1 == pos2);

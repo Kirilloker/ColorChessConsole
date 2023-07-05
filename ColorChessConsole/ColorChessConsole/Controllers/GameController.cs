@@ -1,35 +1,17 @@
-using System.Collections.Generic;
-using UnityEngine;
-using System.Threading.Tasks;
 using ColorChessConsole.Model.BuildSystem;
 using ColorChessConsole.Model.GameState;
 using ColorChessConsole.Model.GameStateCalcSystem;
 using ColorChessConsole.Model.WayCalcSystem;
 using ColorChessConsole.Model;
+using ColorChessConsole.PRINTER;
 
-public class GameController : MonoBehaviour
+public class GameController
 {
     private List<Map> gameStates = new List<Map>();
 
     private GameStateBuilder gameStateBuilder = new GameStateBuilder();
 
-    [SerializeField]
-    private UIController uiController;
-    [SerializeField]
-    private FigureController figureController;
-    [SerializeField]
-    private CellController cellController;
-    [SerializeField]
-    private CameraController cameraController;
-    [SerializeField]
-    private BoardController boardController;
-    [SerializeField]
-    private AudioController audioController;
-    [SerializeField]
-    private Server server;
-
     private bool IsFirstGame = true;
-
     private float cameraSpeed;
 
     // Список игроков с AI
@@ -43,16 +25,7 @@ public class GameController : MonoBehaviour
     {
         // Начало игры 
         // Создаем Доску Клетки и Игроков
-
-        // Проверяем не было ли игры до этого - если да - удаляем старую доску
-        TestCheckNewGame();
-
         gameStates.Add(map);
-
-        boardController.CreateBoard(CurrentGameState);
-        cellController.CreateCells(CurrentGameState);
-        figureController.CreateFigures(CurrentGameState);
-        cameraController.SwitchCamera(CameraViewType.inGame1);
 
         InitAI();
 
@@ -77,41 +50,6 @@ public class GameController : MonoBehaviour
     }
 
 
-    public void CellOnClicked(CellView cellView)
-    {
-        // Нажать на клетку можно только в том случае - если на ней включены подсказки
-
-        Cell cell = CurrentGameState.GetCell(cellView.Pos);
-        Figure figure = CurrentGameState.GetCell(figureController.UpedFigure.Pos).figure;
-
-        if (ItServer && CurrentGameState.EndGame == false)
-        {
-            var signalRClient = GameObject.Find("SignalRClient").GetComponent<SignalRClient>();
-            signalRClient.SendChat(TestServerHelper.ConvertToJSON(new Step(figure, cell)));
-        }
-
-        ApplyStepView(new Step(figure, cell));
-    }
-
-    public void FigureOnClicked(FigureView figureView)
-    {
-        // Получаем фигуру по которой нажали, считаем для неё все возможные пути
-        // И включаем подсказки (А так же BoxColiders у клеток, на которых включились подсказки)
-
-        Figure selectFigure = CurrentGameState.GetCell(figureView.Pos).figure;
-
-        if (selectFigure != null)
-        {
-            List<Cell> allSteps = WayCalcSystem.CalcAllSteps(CurrentGameState, selectFigure);
-            cellController.ShowAllSteps(allSteps);
-            cellController.OnBoxColidersForList(allSteps);
-        }
-        else
-        {
-            Console.WriteLine("Такой фигуры не нашлось");
-        }
-    }
-
     public void ApplyStepView(Step step)
     {
         // Применяем ход - отображаем всё в Unity
@@ -128,79 +66,9 @@ public class GameController : MonoBehaviour
 
         gameStates.Add(map);
 
-        List<Vector3> wayVectors = new List<Vector3>();
-
-        for (int i = 0; i < way.Count; i++)
-        {
-            wayVectors.Add(new Vector3(way[i].pos.X, 0f, way[i].pos.Y));
-        }
-
-        // В клетке стоит фигура -> её хотят съесть
-        if (cell.figure != null)
-        {
-            figureController.EatFigureView(cell.figure, CurrentGameState);
-        }
-
-        //figureController.AnimateMoveFigure(figureController.UpedFigure, wayVectors);
-        figureController.AnimateMoveFigure(figureController.FindFigureView(figure, CurrentGameState), wayVectors);
-        cellController.HideAllPrompts();
-
-        DrawNewGameState();
-
         StartNewStep();
     }
 
-    public void DrawNewGameState()
-    {
-        // Это нужно чтобы нормально работало Шаг-Назад
-        DrawNewGameState(PreviousvGameState);
-    }   
-
-    public void DrawNewGameState(Map CompareMap)
-    {
-        // Если состояние клетки в модели изменилось по сравнению с предыдущим состоянием
-        // То меняем у неё цвет
-        // А так же меняем Очки на UI-board
-
-        // 0 - ничего не изменилось 1 - появилась захваченная клетка 2 - исчезла захваченная клетка
-        int SoundCell = 0;
-
-        for (int i = 0; i < CurrentGameState.Length; i++)
-        {
-            for (int j = 0; j < CurrentGameState.Width; j++)
-            {
-                if (CurrentGameState.GetCell(i, j) != CompareMap.GetCell(i, j))
-                {
-                    cellController.ChangeMaterialCell(i, j, CurrentGameState);
-
-                    // Если клетка перекрасилась в Dark
-                    if (PreviousvGameState.GetCell(i, j).type != CellType.Dark &&
-                        CurrentGameState.GetCell(i, j).type == CellType.Dark)
-                    {
-                        SoundCell = 1;
-                    }
-
-                    // Если клетка перекрасилась из Dark 
-                    if (PreviousvGameState.GetCell(i, j).type == CellType.Dark &&
-                        CurrentGameState.GetCell(i, j).type != CellType.Dark)
-                    {
-                        SoundCell = 2;
-                    }
-                }
-            }
-        }
-
-        if (SoundCell == 1)
-        {
-            audioController.PlayAudio(SoundType.DarkCapture);
-        }
-        if (SoundCell == 2)
-        {
-            audioController.PlayAudio(SoundType.ReverseDarkCapture);
-        }
-
-        boardController.SetScoreUI(CurrentGameState);
-    }
 
     public void SelectGameMode(GameModeType gameMode)
     {
@@ -221,13 +89,12 @@ public class GameController : MonoBehaviour
             default:
                 break;
         }
-
     }
 
     public void StartNewStep()
     {
-        // Новый ход
-        ChangeSpeedCameraConroller();
+        Printer.PrintMap(CurrentGameState);
+
 
         if (CurrentGameState.EndGame == true)
         {
@@ -235,21 +102,14 @@ public class GameController : MonoBehaviour
             return;
         }
 
-        SetFigViewForNewStep();
-        SetCellViewForNewStep();
 
         PlayerType playerType = CurrentGameState.GetPlayerType(CurrentGameState.NumberPlayerStep);
-
+        
         switch (playerType)
         {
             case PlayerType.Human:
-                // Смена камеры
-                CornerType cornerPlayer = CurrentGameState.GetPlayerCorner(CurrentGameState.NumberPlayerStep);
-                
-                if (cornerPlayer == CornerType.DownLeft || cornerPlayer == CornerType.DownRight)
-                    cameraController.SwitchCamera(CameraViewType.inGame1);
-                else
-                    cameraController.SwitchCamera(CameraViewType.inGame2);
+                Console.WriteLine("Human");
+                HumanStep();
                 break;
             case PlayerType.AI:
                 AIStep(playerType);
@@ -262,111 +122,47 @@ public class GameController : MonoBehaviour
                 break;
         }
     }
-    
-    private void TestCheckNewGame()
-    {
-        if (IsFirstGame == false)
-            DestroyAll();
-    }
-   
-    public void DestroyAll()
-    {
-        figureController.DestroyAll();
-        cellController.DestroyAll();
-        boardController.Destroy();
 
-        boardController.ShowBoardDecor();
+    public void HumanStep() 
+    {
+        while (true) 
+        {
+            Position posStart = Position.ReadFromConsole();
+            if (CurrentGameState.GetCell(posStart).FigureType == FigureType.Empty) { continue; }
+            List<Cell> avaibleCell = WayCalcSystem.CalcAllSteps(CurrentGameState, CurrentGameState.GetCell(posStart).figure);
+            foreach (var cell in avaibleCell) Console.WriteLine("\t" + cell.pos.ToString());
+            Position posEnd = Position.ReadFromConsole();
+            if (avaibleCell.Contains(CurrentGameState.GetCell(posEnd)) == false) { Console.WriteLine("Error pos");  continue; }
+            ApplyStepView(new Step(CurrentGameState.GetCell(posStart).figure, CurrentGameState.GetCell(posEnd)));
+            return;
+        }
     }
+
 
     public void EndGame()
     {
-        if (ItServer == true)
-        {
-            uiController.OnlineGameExut();
-            server.CloseConnection();
-        }
-
-        // Конец игры
-        UnityEngine.Console.WriteLine("Конец игры");
-        cameraController.SetCameraSpeed(cameraSpeed);
-        cameraController.SwitchCamera(CameraViewType.noteMenu);
-
-        // ИСПРАВИТЬ - я бы куда-то это перенес 
-
-        figureController.UpedFigure = null;
-        figureController.OFFAllBoxColiders();
-        cellController.OFFALLBoxColiders();
 
         IsFirstGame = false;
         gameStateBuilder = new GameStateBuilder();
         gameStates = new List<Map>();
     }
 
-    public void BackStep()
-    {
-        // Отматывает ход назад на 1
-        if (gameStates.Count <= 2) return;
-
-        Map map = CurrentGameState;
-
-        gameStates.RemoveAt(gameStates.Count - 1);
-
-        figureController.DestroyAll();
-        figureController.CreateFigures(CurrentGameState);
-
-        DrawNewGameState(map);
-
-        StartNewStep();
-    }
-
     private void LoadMap(Map map)
     {
         gameStates.Add(map);
-        DrawNewMap(map);
     }
 
-    private void DrawNewMap(Map map)
-    {
-        figureController.DestroyAll();
-        figureController.CreateFigures(map);
-
-        DrawNewGameState();
-
-        StartNewStep();
-    }
-    private async void AIStep(PlayerType AIType)
+    private void AIStep(PlayerType AIType)
     {
         Step step = new();
-
-        await Task.Run(() =>
-        {
-            step = ai[CurrentGameState.NumberPlayerStep].getStep(CurrentGameState);
-        });
+        
+        step = ai[CurrentGameState.NumberPlayerStep].getStep(CurrentGameState);
 
         if (gameStates.Count == 0) return;
 
-        figureController.UpedFigure = figureController.FindFigureView(step.Figure, CurrentGameState);
         ApplyStepView(step);
     }
 
-    private void SetFigViewForNewStep()
-    {
-        // Настраиваем FigureContoller на новый ход
-        // Включаем у игрока который сейчас ходит (если это человек) BoxColiders у его фигур
-
-        figureController.UpedFigure = null;
-        figureController.OFFAllBoxColiders();
-
-        if (CurrentGameState.GetPlayerType(CurrentGameState.NumberPlayerStep)  == PlayerType.Human)
-            figureController.OnBoxColiders(CurrentGameState.NumberPlayerStep);
-    }
-
-    private void SetCellViewForNewStep()
-    {
-        // Настраиваем CellConroller на новый ход
-        cellController.OFFALLBoxColiders();
-        cellController.HideAllPrompts();
-    }
 
     public bool GetBoolFigureInCell(Position position)
     {
@@ -374,26 +170,5 @@ public class GameController : MonoBehaviour
     }
     public Map CurrentGameState { get { return gameStates[gameStates.Count - 1]; } }
     public Map PreviousvGameState { get { return gameStates[gameStates.Count - 2]; } }
-
-
-    private void ChangeSpeedCameraConroller()
-    {
-        if (CurrentGameState.CountStep == 2)
-        {
-            cameraSpeed = cameraController.GetCameraSpeed();
-            cameraController.SetCameraSpeed(0f);
-        }
-    }
-
-    private bool ItServer { get 
-        {
-            bool itServer = false;
-
-            foreach (var player in CurrentGameState.Players)
-                if (player.type == PlayerType.Online) itServer = true;
-            
-            return itServer;
-        } 
-    }
 
 }
