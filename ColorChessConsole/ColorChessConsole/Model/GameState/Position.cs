@@ -1,9 +1,17 @@
-﻿namespace ColorChessConsole
+﻿using System.Collections.Generic;
+
+namespace ColorChessConsole.Model.GameState
 {
     public class Position
     {
         public int X;
         public int Y;
+
+        public Position()
+        {
+            X = -10;
+            Y = -10;
+        }
 
         public Position(int _X, int _Y)
         {
@@ -19,8 +27,8 @@
 
         public Position(Position anotherPosition)
         {
-            this.X = anotherPosition.X;
-            this.Y = anotherPosition.Y;
+            X = anotherPosition.X;
+            Y = anotherPosition.Y;
         }
 
         public static bool operator !=(Position pos1, Position pos2)
@@ -38,5 +46,35 @@
             return "(X:" + X + ";   Y:" + Y + ")";
         }
 
+        public override int GetHashCode()
+        {
+            return X.GetHashCode() * Y.GetHashCode();
+        }
+
+        public int _X
+        {
+            get { return X; }
+            set { X = value; }
+        }
+
+        public int _Y
+        {
+            get { return Y; }
+            set { Y = value; }
+        }
+
+        public string GetStringForHash()
+        {
+            return X.ToString() + Y.ToString();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Position position &&
+                   X == position.X &&
+                   Y == position.Y &&
+                   _X == position._X &&
+                   _Y == position._Y;
+        }
     }
 }

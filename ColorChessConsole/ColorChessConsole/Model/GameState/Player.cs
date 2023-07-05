@@ -1,49 +1,44 @@
-﻿namespace ColorChessConsole;
+﻿using System.Collections.Generic;
 
-public class Player
+namespace ColorChessConsole.Model.GameState
 {
-    public int number;
-    public CornerType corner;
-    public ColorType color;
-    public PlayerType type;
-
-    public List<Figure> figures = new List<Figure>();
-
-
-    public Player() { }
-
-    public Player(Player anotherPlayer)
+    public class Player
     {
-        number = anotherPlayer.number;
-        corner = anotherPlayer.corner;
-        color = anotherPlayer.color;
-        type = anotherPlayer.type;
+        public int number;
+        public CornerType corner;
+        public ColorType color;
+        public PlayerType type;
 
-        this.figures = new List<Figure>();
+        public List<Figure> figures = new List<Figure>();
 
-        for (int i = 0; i < anotherPlayer.figures.Count; i++)
+
+        public Player() { }
+
+        public Player(Player anotherPlayer)
         {
-            this.figures.Add(new Figure(anotherPlayer.figures[i], this));
-        }
-    }
+            number = anotherPlayer.number;
+            corner = anotherPlayer.corner;
+            color = anotherPlayer.color;
+            type = anotherPlayer.type;
 
-    public override string ToString()
-    {
-        string Logs = "";
+            figures = new List<Figure>();
 
-        Logs += "Number: " + number.ToString() + "\n";
-
-        Logs += "Type: " + Types.ToString(type) + "\n";
-
-        Logs += "Corner: " + Types.ToString(corner) + "\n";
-
-        Logs += "Color: " + Types.ToString(color) + "\n";
-
-        for (int i = 0; i < figures.Count; i++)
-        {
-            Logs += figures[i].ToString() + "\n";
+            for (int i = 0; i < anotherPlayer.figures.Count; i++)
+            {
+                figures.Add(new Figure(anotherPlayer.figures[i], this));
+            }
         }
 
-        return Logs;
-    }
+        public string GetStringForHash()
+        {
+            string stringForHash = number.ToString();
+
+            for (int i = 0; i < figures.Count; i++)
+            {
+                stringForHash += figures[i].GetStringForHash();
+            }
+
+            return stringForHash;
+        }
+    };
 }

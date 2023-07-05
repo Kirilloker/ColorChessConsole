@@ -1,81 +1,105 @@
-﻿namespace ColorChessConsole;
-class HorseAlgorithm : WayCalcStrategy
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using ColorChessConsole.Model.GameState;
+using ColorChessConsole.Model.Interfaces;
+
+namespace ColorChessConsole.Model.WayCalcSystem.Algorithms
 {
-    public List<Cell> AllSteps(Map map, Figure figure)
+    class HorseAlgorithm : IWayCalcStrategy
     {
-        List<Cell> avaibleCell = new List<Cell>();
-
-        Position posFigure = figure.pos;
-
-        for (int i = (posFigure.X - 2); i <= posFigure.X + 2; i++)
+        public List<Cell> AllSteps(Map map, Figure figure)
         {
-            if (i < 0 || i > map.Width - 1) { continue; }
+            Dictionary<Cell, int> dict = new Dictionary<Cell, int>(8);
 
-            for (int j = (posFigure.Y - 2); j <= posFigure.Y + 2; j++)
+            Position posFigure = figure.pos;
+
+            for (int i = posFigure.X - 2; i <= posFigure.X + 2; i++)
             {
-                if (j < 0 || j > map.Length - 1) { continue; }
+                if (i < 0 || i > map.Width - 1) { continue; }
 
-                if (((Math.Abs(i - posFigure.X) == 1) && (Math.Abs(j - posFigure.Y) == 2)) || 
-                    ((Math.Abs(i - posFigure.X) == 2) && (Math.Abs(j - posFigure.Y) == 1)))
+                for (int j = posFigure.Y - 2; j <= posFigure.Y + 2; j++)
                 {
-                    Position posCell = new Position(i, j);
+                    if (j < 0 || j > map.Length - 1) { continue; }
 
-                    Cell cell = map.GetCell(posCell);
+                    if (Math.Abs(i - posFigure.X) == 1 && Math.Abs(j - posFigure.Y) == 2 ||
+                        Math.Abs(i - posFigure.X) == 2 && Math.Abs(j - posFigure.Y) == 1)
+                    {
+                        Position posCell = new Position(i, j);
 
-                    if (Check.BusyCell(cell) == true
-                        ||
-                        Check.Avaible(posCell, figure, map) == false) { continue; }
-                   
-                    avaibleCell.Add(cell);
+                        Cell cell = map.GetCell(posCell);
+
+                        if (Check.BusyCell(cell) == true
+                            ||
+                            Check.Avaible(posCell, figure, map) == false) { continue; }
+
+                        int test = 0;
+                        test += Check.SelfCellDark(cell, figure.Number) ? -3 : 0;
+
+                        dict.Add(cell, test);
+                    }
                 }
             }
+
+
+            List<Cell> avaibleCell = new List<Cell>(dict.Count);
+
+            // Сортируем словарь и добовляем всё в массив
+            dict = dict.OrderBy(pair => pair.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
+
+            foreach (Cell cell in dict.Keys)
+            {
+                avaibleCell.Add(cell);
+            }
+
+            avaibleCell.Reverse();
+
+
+            return avaibleCell;
         }
-        return avaibleCell;
-    }
 
 
-    public List<Cell> Way(Map map, Position startPos, Position endPos, Figure figure)
-    {
-        List<Cell> way = new List<Cell>();
-
-        way.Add(map.GetCell(startPos));
-
-        Position pos1 = new Position(startPos.X, startPos.Y + (endPos.Y - startPos.Y) / 2);
-        Position pos2 = new Position(startPos.X, startPos.Y + (endPos.Y - startPos.Y));
-
-        if ((Math.Abs(endPos.X - startPos.X)) > (Math.Abs(endPos.Y - startPos.Y)))
+        public List<Cell> Way(Map map, Position startPos, Position endPos, Figure figure)
         {
-            pos1 = new Position(startPos.X + (endPos.X - startPos.X) / 2, startPos.Y);
-            pos2 = new Position(startPos.X + (endPos.X - startPos.X)    , startPos.Y);
+            List<Cell> way = new List<Cell>(4);
+
+            way.Add(map.GetCell(startPos));
+
+            Position pos1 = new Position(startPos.X, startPos.Y + (endPos.Y - startPos.Y) / 2);
+            Position pos2 = new Position(startPos.X, startPos.Y + (endPos.Y - startPos.Y));
+
+            if (Math.Abs(endPos.X - startPos.X) > Math.Abs(endPos.Y - startPos.Y))
+            {
+                pos1 = new Position(startPos.X + (endPos.X - startPos.X) / 2, startPos.Y);
+                pos2 = new Position(startPos.X + (endPos.X - startPos.X), startPos.Y);
+            }
+
+            if (jump_horse(pos1, map, figure))
+            {
+                way.Add(map.GetCell(pos1));
+            }
+
+            if (jump_horse(pos2, map, figure))
+            {
+                way.Add(map.GetCell(pos2));
+            }
+
+
+            way.Add(map.GetCell(endPos));
+
+            return way;
         }
 
 
-        if (jump_horse(pos1, map, figure))
+        bool jump_horse(Position posCell, Map map, Figure figure)
         {
-            way.Add(map.GetCell(pos1));
+            Cell cell = map.GetCell(posCell);
+
+            if (Check.BusyCell(cell) == true
+                ||
+                Check.Avaible(posCell, figure, map) == false) { return false; }
+
+            return true;
         }
-
-        if (jump_horse(pos2, map, figure))
-        {
-            way.Add(map.GetCell(pos2));
-        }
-
-
-        way.Add(map.GetCell(endPos));
-
-        return way;
-    }
-
-
-    bool jump_horse(Position posCell, Map map, Figure figure)
-    {
-        Cell cell = map.GetCell(posCell);
-
-        if (Check.BusyCell(cell) == true
-            ||
-            Check.Avaible(posCell, figure, map) == false) { return false; }
-
-        return true;
     }
 }
-

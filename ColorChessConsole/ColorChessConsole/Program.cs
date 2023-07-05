@@ -13,13 +13,10 @@ static void Main()
     int xEnd;
     int yEnd;
 
-    //Dictionary<uint, int> TestHashTable = new Dictionary<uint, int>();
     Hashtable hashtable = new Hashtable();
 
     while (true)
     {
-        //Console.WriteLine(TestHashTable.ContainsKey(map.GetHash()));
-        //TestHashTable.Add(map.GetHash(), 1);
 
         Console.WriteLine(hashtable.ContainsKey(map.GetHash()));
         hashtable.Add(map.GetHash(), 1);

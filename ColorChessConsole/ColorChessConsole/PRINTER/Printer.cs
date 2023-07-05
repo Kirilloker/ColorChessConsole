@@ -1,4 +1,7 @@
-﻿namespace ColorChessConsole.PRINTER;
+﻿using ColorChessConsole.Model;
+using ColorChessConsole.Model.GameState;
+
+namespace ColorChessConsole.PRINTER;
 
 public class Printer
 {
@@ -19,7 +22,7 @@ public class Printer
 
             for (int j = 0; j < map.Length; j++)
             {
-                mapString += GetStringCell(map.cells[i, j]) + "\t";
+                mapString += GetStringCell(map.Cells[i, j]) + "\t";
             }
 
             mapString += "\n\n";

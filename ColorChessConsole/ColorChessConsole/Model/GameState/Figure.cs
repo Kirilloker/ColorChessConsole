@@ -1,40 +1,46 @@
-﻿namespace ColorChessConsole;
+﻿using System.Collections.Generic;
 
-public class Figure
+namespace ColorChessConsole.Model.GameState
 {
-    public Position? pos;
-    public FigureType type;
-    public Player? player;
-    public Dictionary<CellType, bool>[]? require;
-    
-
-    public Figure() { }
-
-    public Figure(Figure anotherFigure, Player newPlayer)
+    public class Figure
     {
-        this.pos = new Position(anotherFigure.pos);
-        this.type = anotherFigure.type;
-        this.player = newPlayer;
-        this.require = anotherFigure.require;
-        //FigureView?
-    }
-
-    public int Number
-    {
-        get { return player.number; }
-    }
+        public Position pos;
+        public FigureType type;
+        public Player player;
+        public Dictionary<CellType, bool>[] require;
 
 
-    public override string ToString()
-    {
-        string Logs = "";
+        public Figure() { }
 
-        Logs += "Position: " + pos.ToString() + "\n";
+        public Figure(Figure anotherFigure, Player newPlayer)
+        {
+            pos = new Position(anotherFigure.pos);
+            type = anotherFigure.type;
+            player = newPlayer;
+            require = anotherFigure.require;
+        }
 
-        Logs += "Type: " + Types.ToString(type) + "\n";
+        public int Number
+        {
+            get { return player.number; }
+        }
 
-        Logs += "Number Player: " + Number.ToString() + "\n";
+        public bool Equals(Figure anotherFigure)
+        {
+            return pos == anotherFigure.pos && type == anotherFigure.type && Number == anotherFigure.Number;
+        }
 
-        return Logs;
-    }
+        public override int GetHashCode()
+        {
+            return
+                pos.GetHashCode() *
+                type.GetHashCode();
+        }
+
+
+        public string GetStringForHash()
+        {
+            return pos.GetStringForHash() + Number.ToString();
+        }
+    };
 }

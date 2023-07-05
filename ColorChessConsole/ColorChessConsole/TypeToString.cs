@@ -2,7 +2,7 @@
 
 namespace ColorChessConsole
 {
-    public static class Types
+    public static class TypeToString
     {
         // На вход поступает Енуменатор - возвращает строку 
         public static string ToString(PlayerType playerType)
@@ -13,10 +13,11 @@ namespace ColorChessConsole
                     return "Human";
                 case PlayerType.AI:
                     return "AI";
+                case PlayerType.AI2:
+                    return "AI2";
                 case PlayerType.Online:
                     return "Online";
                 default:
-                    DebugConsole.Print("Unknown type Player");
                     return "WARNING!";
             }
         }
@@ -32,7 +33,6 @@ namespace ColorChessConsole
                 case CellType.Dark:
                     return "Dark";
                 default:
-                    DebugConsole.Print("Unknown type Cell");
                     return "WARNING!";
             }
         }
@@ -57,7 +57,6 @@ namespace ColorChessConsole
                 case FigureType.Queen:
                     return "Queen";
                 default:
-                    DebugConsole.Print("Unknown type Figure");
                     return "WARNING!";
             }
         }
@@ -75,7 +74,6 @@ namespace ColorChessConsole
                 case CornerType.UpLeft:
                     return "UpLeft";
                 default:
-                    DebugConsole.Print("Unknown type Corner");
                     return "WARNING!";
             }
         }
@@ -95,7 +93,6 @@ namespace ColorChessConsole
                 case ColorType.Purple:
                     return "Purple";
                 default:
-                    DebugConsole.Print("Unknown type Color");
                     return "WARNING!";
             }
         }
@@ -114,7 +111,6 @@ namespace ColorChessConsole
                 case "dark":
                     return CellType.Dark;
                 default:
-                    DebugConsole.Print("Unknown type str Cell");
                     return CellType.Empty;
             }
         }
